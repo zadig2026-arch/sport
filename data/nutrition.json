@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "cible_kcal": 2850,
+    "profil": "69 kg / 1m86, maintenance estimée ~2400 kcal, surplus +450 kcal",
+    "macros": {
+      "proteines_g": 135,
+      "glucides_g": 380,
+      "lipides_g": 75
+    },
+    "cout_jour_eur": "4 à 5 €"
+  },
+  "principes": [
+    "Manger même sans faim — l'ectomorphe rate ses gains à cause du sous-manger, pas du sous-training",
+    "Préparer les repas à l'avance (batch cooking dimanche = 2h pour la semaine)",
+    "Boire 3L d'eau/jour, pas d'alcool (tue la synthèse protéique)",
+    "Créatine 3-5g/jour, à n'importe quelle heure, avec un verre d'eau",
+    "Shake post-training dans les 2h qui suivent la séance"
+  ],
+  "repas": [
+    {
+      "nom": "Petit-déjeuner",
+      "heure": "7h-9h",
+      "kcal": 750,
+      "items": [
+        "100g flocons d'avoine",
+        "500 ml lait entier",
+        "1 banane",
+        "30g beurre de cacahuète",
+        "2 œufs entiers brouillés"
+      ]
+    },
+    {
+      "nom": "Collation matinée",
+      "heure": "11h",
+      "kcal": 400,
+      "items": [
+        "80g pain complet",
+        "30g beurre de cacahuète",
+        "1 banane"
+      ]
+    },
+    {
+      "nom": "Déjeuner",
+      "heure": "13h",
+      "kcal": 700,
+      "items": [
+        "200g riz ou pâtes cuits (70g cru)",
+        "150g cuisse de poulet",
+        "Légumes (haricots verts, courgettes, brocoli)",
+        "1 càs huile d'olive"
+      ]
+    },
+    {
+      "nom": "Pré-training",
+      "heure": "30 min avant salle",
+      "kcal": 250,
+      "items": [
+        "1 banane",
+        "40g flocons d'avoine avec un peu de lait"
+      ]
+    },
+    {
+      "nom": "Post-training / Gainer maison",
+      "heure": "Dans les 2h après séance",
+      "kcal": 550,
+      "items": [
+        "400 ml lait entier",
+        "50g flocons d'avoine",
+        "1 banane",
+        "20g beurre de cacahuète",
+        "(mixer le tout → shake)"
+      ]
+    },
+    {
+      "nom": "Dîner",
+      "heure": "20h",
+      "kcal": 600,
+      "items": [
+        "250g pâtes ou riz cuits",
+        "Au choix : 2 œufs + 100g thon en conserve, OU 150g lentilles cuites, OU 150g poulet",
+        "Légumes + 1 càs huile olive"
+      ]
+    }
+  ],
+  "liste_courses_semaine": [
+    {"item": "Flocons d'avoine", "quantite": "1 kg", "prix_eur": 2.0},
+    {"item": "Riz (blanc ou basmati)", "quantite": "1 kg", "prix_eur": 2.0},
+    {"item": "Pâtes", "quantite": "1 kg", "prix_eur": 1.5},
+    {"item": "Pain complet", "quantite": "1 pain", "prix_eur": 2.0},
+    {"item": "Œufs", "quantite": "18 (2 boîtes de 6 + 6)", "prix_eur": 6.0},
+    {"item": "Lait entier", "quantite": "6 L", "prix_eur": 6.0},
+    {"item": "Cuisses de poulet", "quantite": "1,5 kg", "prix_eur": 10.0},
+    {"item": "Thon en conserve", "quantite": "4 boîtes", "prix_eur": 5.0},
+    {"item": "Lentilles sèches", "quantite": "500g", "prix_eur": 1.5},
+    {"item": "Beurre de cacahuète", "quantite": "1 pot 500g", "prix_eur": 4.0},
+    {"item": "Bananes", "quantite": "2 kg", "prix_eur": 3.0},
+    {"item": "Huile d'olive", "quantite": "500 ml", "prix_eur": 4.0},
+    {"item": "Légumes variés (surgelés OK)", "quantite": "2 kg", "prix_eur": 5.0},
+    {"item": "Créatine monohydrate", "quantite": "500g (3-4 mois de stock)", "prix_eur": 15.0}
+  ],
+  "cout_hebdo_estime_eur": "55 à 65 € (sans créatine récurrente)",
+  "ajustements": [
+    {"condition": "+0 kg sur la balance 2 semaines de suite", "action": "Augmenter de 300 kcal/jour (ex : +1 shake gainer maison)"},
+    {"condition": "+0,8 kg ou plus par semaine", "action": "Réduire de 150 kcal/jour — probablement trop de gras"},
+    {"condition": "Manque d'appétit", "action": "Liquides caloriques (lait, shakes) plus faciles à avaler que la nourriture solide"}
+  ]
+}

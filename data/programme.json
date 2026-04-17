@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "titre": "Full Body Prise de Masse",
+    "duree_semaines": 16,
+    "frequence": "3 séances/semaine (Lun/Mer/Ven)",
+    "profil_cible": "Débutant ectomorphe 1m86 / 69kg, objectif +4 à 6 kg en 4 mois"
+  },
+  "principes": [
+    "Technique avant charge : les 2 premières semaines à 50% de ce que tu crois pouvoir",
+    "Tempo 2-0-1 : 2s descente, 0s pause, 1s montée",
+    "Échauffement obligatoire : 5 min vélo + 2 séries légères sur le 1er exercice",
+    "Repos 2 min sur polyarticulaires, 90s sur isolation",
+    "Noter chaque charge dans l'app → viser +2,5 kg ou +1 rep par semaine",
+    "Pas de cardio intense : max 1 marche/semaine"
+  ],
+  "phases": [
+    {
+      "id": "phase1",
+      "numero": 1,
+      "nom": "Adaptation technique",
+      "semaines": "1-4",
+      "objectif": "Apprendre les mouvements, créer les connexions neuromusculaires",
+      "format": "3 séries × 10 reps (sauf indication), repos 90s",
+      "seances": [
+        {
+          "id": "P1-A",
+          "nom": "Séance A — Dominante bas",
+          "exercices": [
+            {"nom": "Squat barre", "series": 4, "reps": "8", "repos_s": 120, "note": "Pieds largeur épaules, descendre jusqu'à cuisses parallèles, dos droit"},
+            {"nom": "Développé couché barre", "series": 3, "reps": "10", "repos_s": 120, "note": "Omoplates serrées, barre au niveau des mamelons, pas de rebond"},
+            {"nom": "Rowing barre (pronation)", "series": 3, "reps": "10", "repos_s": 90, "note": "Buste à 45°, tirer vers le bas du sternum, contracter dos"},
+            {"nom": "Fentes haltères", "series": 3, "reps": "10 par jambe", "repos_s": 90, "note": "Genou arrière proche du sol, buste droit"},
+            {"nom": "Curl biceps haltères", "series": 3, "reps": "12", "repos_s": 60, "note": "Coudes fixes, supination en haut du mouvement"},
+            {"nom": "Gainage planche", "series": 3, "reps": "45s", "repos_s": 60, "note": "Corps aligné, ne pas creuser le bas du dos"}
+          ]
+        },
+        {
+          "id": "P1-B",
+          "nom": "Séance B — Dominante haut",
+          "exercices": [
+            {"nom": "Soulevé de terre", "series": 4, "reps": "6", "repos_s": 150, "note": "Dos plat, barre collée aux tibias, pousser le sol avec les pieds"},
+            {"nom": "Développé militaire barre", "series": 3, "reps": "10", "repos_s": 120, "note": "Fessiers serrés, ne pas cambrer, barre au-dessus des oreilles en haut"},
+            {"nom": "Tractions assistées ou tirage vertical", "series": 3, "reps": "max / 10", "repos_s": 120, "note": "Prise pronation largeur épaules, tirer vers le menton"},
+            {"nom": "Presse à cuisses", "series": 3, "reps": "12", "repos_s": 90, "note": "Pieds centrés, descendre jusqu'à 90°, ne pas verrouiller genoux"},
+            {"nom": "Dips assistés ou pompes", "series": 3, "reps": "10", "repos_s": 90, "note": "Coudes rentrés, descendre jusqu'à 90°"},
+            {"nom": "Crunch lesté", "series": 3, "reps": "15", "repos_s": 60, "note": "Décoller les omoplates, pas la taille"}
+          ]
+        },
+        {
+          "id": "P1-C",
+          "nom": "Séance C — Volume équilibré",
+          "exercices": [
+            {"nom": "Squat bulgare haltères", "series": 3, "reps": "10 par jambe", "repos_s": 90, "note": "Pied arrière sur banc, genou avant aligné cheville"},
+            {"nom": "Développé incliné haltères", "series": 3, "reps": "10", "repos_s": 90, "note": "Banc à 30-45°, coudes à 75° du corps"},
+            {"nom": "Rowing haltère unilatéral", "series": 3, "reps": "10 par bras", "repos_s": 90, "note": "Appui sur banc, tirer vers la hanche"},
+            {"nom": "Soulevé de terre roumain", "series": 3, "reps": "10", "repos_s": 90, "note": "Jambes légèrement fléchies, barre colle aux jambes, étirer ischios"},
+            {"nom": "Élévations latérales", "series": 3, "reps": "12", "repos_s": 60, "note": "Coudes légèrement fléchis, monter à hauteur d'épaules"},
+            {"nom": "Curl marteau + extension triceps (superset)", "series": 3, "reps": "12", "repos_s": 60, "note": "Enchaîner biceps puis triceps sans repos entre les deux"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase2",
+      "numero": 2,
+      "nom": "Hypertrophie",
+      "semaines": "5-10",
+      "objectif": "Volume d'entraînement maximal pour construire du muscle",
+      "format": "4 séries × 8-10 reps sur polyarticulaires, repos 2 min. Charges 70-75% 1RM.",
+      "seances": [
+        {
+          "id": "P2-A",
+          "nom": "Séance A — Dominante bas",
+          "exercices": [
+            {"nom": "Squat barre", "series": 4, "reps": "8", "repos_s": 150, "note": "Charges plus lourdes, technique toujours propre"},
+            {"nom": "Développé couché barre", "series": 4, "reps": "8-10", "repos_s": 120, "note": "Ajouter 1 spotter pour les lourdes"},
+            {"nom": "Rowing barre (pronation)", "series": 4, "reps": "8-10", "repos_s": 120},
+            {"nom": "Fentes haltères", "series": 3, "reps": "10 par jambe", "repos_s": 90},
+            {"nom": "Curl biceps haltères", "series": 3, "reps": "10", "repos_s": 60, "note": "Dernière série en drop set (réduire de 30%)"},
+            {"nom": "Gainage planche", "series": 3, "reps": "60s", "repos_s": 60}
+          ]
+        },
+        {
+          "id": "P2-B",
+          "nom": "Séance B — Dominante haut",
+          "exercices": [
+            {"nom": "Soulevé de terre", "series": 4, "reps": "6-8", "repos_s": 180},
+            {"nom": "Développé militaire barre", "series": 4, "reps": "8", "repos_s": 120},
+            {"nom": "Tractions ou tirage vertical", "series": 4, "reps": "max / 10", "repos_s": 120},
+            {"nom": "Presse à cuisses", "series": 4, "reps": "10", "repos_s": 90},
+            {"nom": "Dips ou pompes lestées", "series": 3, "reps": "10", "repos_s": 90, "note": "Dernière série drop set"},
+            {"nom": "Crunch lesté", "series": 3, "reps": "15", "repos_s": 60}
+          ]
+        },
+        {
+          "id": "P2-C",
+          "nom": "Séance C — Volume équilibré",
+          "exercices": [
+            {"nom": "Squat bulgare haltères", "series": 4, "reps": "10 par jambe", "repos_s": 90},
+            {"nom": "Développé incliné haltères", "series": 4, "reps": "10", "repos_s": 90},
+            {"nom": "Rowing haltère unilatéral", "series": 4, "reps": "10 par bras", "repos_s": 90},
+            {"nom": "Soulevé de terre roumain", "series": 4, "reps": "10", "repos_s": 90},
+            {"nom": "Élévations latérales", "series": 4, "reps": "12", "repos_s": 60, "note": "Dernière série drop set"},
+            {"nom": "Curl marteau + extension triceps (superset)", "series": 3, "reps": "12", "repos_s": 60}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase3",
+      "numero": 3,
+      "nom": "Force + Masse",
+      "semaines": "11-14",
+      "objectif": "Casser les plateaux, recruter plus de fibres musculaires",
+      "format": "5 séries × 5 reps sur polyarticulaires (80-85% 1RM), isolation 3×10. Repos 3 min sur les lourdes.",
+      "seances": [
+        {
+          "id": "P3-A",
+          "nom": "Séance A — Force basse",
+          "exercices": [
+            {"nom": "Squat barre", "series": 5, "reps": "5", "repos_s": 180, "note": "Charges lourdes, technique parfaite prime"},
+            {"nom": "Développé couché barre", "series": 5, "reps": "5", "repos_s": 180},
+            {"nom": "Rowing barre (pronation)", "series": 4, "reps": "6-8", "repos_s": 120},
+            {"nom": "Fentes haltères", "series": 3, "reps": "10 par jambe", "repos_s": 90},
+            {"nom": "Curl biceps haltères", "series": 3, "reps": "10", "repos_s": 60},
+            {"nom": "Gainage planche", "series": 3, "reps": "60s", "repos_s": 60}
+          ]
+        },
+        {
+          "id": "P3-B",
+          "nom": "Séance B — Force haute",
+          "exercices": [
+            {"nom": "Soulevé de terre", "series": 5, "reps": "5", "repos_s": 180},
+            {"nom": "Développé militaire barre", "series": 5, "reps": "5", "repos_s": 150},
+            {"nom": "Tractions lestées ou tirage vertical lourd", "series": 4, "reps": "6-8", "repos_s": 120},
+            {"nom": "Presse à cuisses", "series": 3, "reps": "10", "repos_s": 90},
+            {"nom": "Dips lestés", "series": 3, "reps": "8", "repos_s": 90},
+            {"nom": "Crunch lesté", "series": 3, "reps": "15", "repos_s": 60}
+          ]
+        },
+        {
+          "id": "P3-C",
+          "nom": "Séance C — Assistance",
+          "exercices": [
+            {"nom": "Squat bulgare haltères", "series": 4, "reps": "8 par jambe", "repos_s": 90},
+            {"nom": "Développé incliné haltères", "series": 4, "reps": "8", "repos_s": 90},
+            {"nom": "Rowing haltère unilatéral", "series": 4, "reps": "8 par bras", "repos_s": 90},
+            {"nom": "Soulevé de terre roumain", "series": 4, "reps": "8", "repos_s": 90},
+            {"nom": "Élévations latérales", "series": 4, "reps": "12", "repos_s": 60},
+            {"nom": "Curl marteau + extension triceps (superset)", "series": 3, "reps": "10", "repos_s": 60}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase4",
+      "numero": 4,
+      "nom": "Finition + Deload",
+      "semaines": "15-16",
+      "objectif": "S15 : charges max phase 3 en 4×8. S16 : deload à 60% pour récupérer avant bilan.",
+      "format": "S15 : 4×8. S16 : 3×8 à 60%.",
+      "seances": [
+        {
+          "id": "P4-A",
+          "nom": "Séance A — Deload friendly",
+          "exercices": [
+            {"nom": "Squat barre", "series": 4, "reps": "8", "repos_s": 120, "note": "S15 charges max, S16 à 60%"},
+            {"nom": "Développé couché barre", "series": 4, "reps": "8", "repos_s": 120},
+            {"nom": "Rowing barre (pronation)", "series": 3, "reps": "10", "repos_s": 90},
+            {"nom": "Fentes haltères", "series": 3, "reps": "10 par jambe", "repos_s": 90},
+            {"nom": "Curl biceps haltères", "series": 3, "reps": "12", "repos_s": 60},
+            {"nom": "Gainage planche", "series": 3, "reps": "60s", "repos_s": 60}
+          ]
+        },
+        {
+          "id": "P4-B",
+          "nom": "Séance B — Deload friendly",
+          "exercices": [
+            {"nom": "Soulevé de terre", "series": 3, "reps": "6", "repos_s": 150, "note": "S15 charges max, S16 à 60%"},
+            {"nom": "Développé militaire barre", "series": 4, "reps": "8", "repos_s": 120},
+            {"nom": "Tractions ou tirage vertical", "series": 3, "reps": "10", "repos_s": 90},
+            {"nom": "Presse à cuisses", "series": 3, "reps": "12", "repos_s": 90},
+            {"nom": "Dips ou pompes", "series": 3, "reps": "10", "repos_s": 90},
+            {"nom": "Crunch lesté", "series": 3, "reps": "15", "repos_s": 60}
+          ]
+        },
+        {
+          "id": "P4-C",
+          "nom": "Séance C — Récupération active",
+          "exercices": [
+            {"nom": "Squat bulgare haltères", "series": 3, "reps": "10 par jambe", "repos_s": 90},
+            {"nom": "Développé incliné haltères", "series": 3, "reps": "10", "repos_s": 90},
+            {"nom": "Rowing haltère unilatéral", "series": 3, "reps": "10 par bras", "repos_s": 90},
+            {"nom": "Soulevé de terre roumain", "series": 3, "reps": "10", "repos_s": 90},
+            {"nom": "Élévations latérales", "series": 3, "reps": "12", "repos_s": 60},
+            {"nom": "Curl marteau + extension triceps (superset)", "series": 3, "reps": "12", "repos_s": 60}
+          ]
+        }
+      ]
+    }
+  ]
+}
