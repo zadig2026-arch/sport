@@ -93,9 +93,14 @@ function getCurrentSession() {
   return phase.seances.find(s => s.id === currentSessionId);
 }
 
+const DEMO_BASE = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises';
+let demoIntervals = [];
+
 function renderSession() {
   const session = getCurrentSession();
   if (!session) return;
+  demoIntervals.forEach(clearInterval);
+  demoIntervals = [];
   const intro = document.getElementById('session-intro');
   const phase = programme.phases.find(p => p.id === state.phaseId);
   intro.textContent = `${phase.nom} (S${phase.semaines}) — ${phase.format}`;
@@ -107,13 +112,93 @@ function renderSession() {
   });
 }
 
+function renderDemoThumb(slug, name) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'demo-thumb';
+  btn.setAttribute('aria-label', `Voir la démo de ${name}`);
+  const base = `${DEMO_BASE}/${encodeURIComponent(slug)}`;
+  const a = document.createElement('img');
+  a.className = 'demo-frame demo-frame-a';
+  a.crossOrigin = 'anonymous';
+  a.src = `${base}/0.jpg`;
+  a.alt = name;
+  a.loading = 'lazy';
+  a.decoding = 'async';
+  const b = document.createElement('img');
+  b.className = 'demo-frame demo-frame-b';
+  b.crossOrigin = 'anonymous';
+  b.src = `${base}/1.jpg`;
+  b.alt = '';
+  b.loading = 'lazy';
+  b.decoding = 'async';
+  a.onerror = () => btn.remove();
+  btn.appendChild(a);
+  btn.appendChild(b);
+  const play = document.createElement('span');
+  play.className = 'demo-play';
+  play.textContent = '▶';
+  btn.appendChild(play);
+  const id = setInterval(() => btn.classList.toggle('flipped'), 1200);
+  demoIntervals.push(id);
+  btn.onclick = () => openDemoModal(slug, name);
+  return btn;
+}
+
+function openDemoModal(slug, name) {
+  const modal = document.createElement('div');
+  modal.className = 'demo-modal';
+  const content = document.createElement('div');
+  content.className = 'demo-modal-content';
+  content.onclick = (e) => e.stopPropagation();
+  const title = document.createElement('h2');
+  title.textContent = name;
+  content.appendChild(title);
+  const frame = document.createElement('div');
+  frame.className = 'demo-modal-frame';
+  const base = `${DEMO_BASE}/${encodeURIComponent(slug)}`;
+  const a = document.createElement('img');
+  a.className = 'demo-frame demo-frame-a';
+  a.crossOrigin = 'anonymous';
+  a.src = `${base}/0.jpg`;
+  a.alt = name;
+  const b = document.createElement('img');
+  b.className = 'demo-frame demo-frame-b';
+  b.crossOrigin = 'anonymous';
+  b.src = `${base}/1.jpg`;
+  b.alt = '';
+  frame.appendChild(a);
+  frame.appendChild(b);
+  content.appendChild(frame);
+  const hint = document.createElement('p');
+  hint.className = 'demo-modal-hint';
+  hint.textContent = 'Position de départ ↔ fin de mouvement';
+  content.appendChild(hint);
+  const close = document.createElement('button');
+  close.className = 'ghost';
+  close.textContent = 'Fermer';
+  modal.appendChild(content);
+  content.appendChild(close);
+  const toggle = setInterval(() => frame.classList.toggle('flipped'), 900);
+  const cleanup = () => { clearInterval(toggle); modal.remove(); };
+  modal.onclick = cleanup;
+  close.onclick = cleanup;
+  document.body.appendChild(modal);
+}
+
 function renderExerciseCard(ex, idx, sessionId) {
   const card = document.createElement('div');
   card.className = 'exercise-card';
 
+  const header = document.createElement('div');
+  header.className = 'exercise-header';
+  if (ex.demo) {
+    header.appendChild(renderDemoThumb(ex.demo, ex.nom));
+  }
   const h3 = document.createElement('h3');
   h3.textContent = ex.nom;
-  card.appendChild(h3);
+  header.appendChild(h3);
+  card.appendChild(header);
 
   const meta = document.createElement('div');
   meta.className = 'exercise-meta';

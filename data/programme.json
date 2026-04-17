@@ -28,39 +28,207 @@
           "id": "P1-A",
           "nom": "Séance A — Jambes + Pec",
           "exercices": [
-            {"nom": "Squat barre", "series": 3, "reps": "10", "repos_s": 120, "poids_depart": "40 kg (barre 20 + 10 kg/côté)", "note": "Pieds largeur épaules, descendre jusqu'à cuisses parallèles, dos droit. Charge légère, focus technique."},
-            {"nom": "Développé couché barre", "series": 3, "reps": "10", "repos_s": 120, "poids_depart": "30 kg (barre 20 + 5 kg/côté)", "note": "Omoplates serrées, barre au niveau des mamelons, pas de rebond"},
-            {"nom": "Lat pulldown", "series": 3, "reps": "10", "repos_s": 90, "poids_depart": "30 kg", "note": "Prise pronation largeur épaules +10 cm, tirer vers le haut de la poitrine"},
-            {"nom": "Leg extension", "series": 3, "reps": "12", "repos_s": 75, "poids_depart": "20 kg", "note": "Dos bien calé, extension complète, 1s de contraction en haut"},
-            {"nom": "Élévations latérales haltères", "series": 3, "reps": "12", "repos_s": 60, "poids_depart": "4 kg / bras", "note": "Coudes légèrement fléchis, monter à hauteur d'épaules, pas plus haut. Léger."},
-            {"nom": "Tricep pulldown corde", "series": 3, "reps": "12", "repos_s": 60, "poids_depart": "15 kg", "note": "Coudes collés au corps, extension complète, écarter la corde en bas"},
-            {"nom": "Standing calf raise", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "40 kg", "note": "Amplitude complète, 1s de pause en haut"}
+            {
+              "nom": "Squat barre",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "40 kg (barre 20 + 10 kg/côté)",
+              "note": "Pieds largeur épaules, descendre jusqu'à cuisses parallèles, dos droit. Charge légère, focus technique.",
+              "demo": "Barbell_Squat"
+            },
+            {
+              "nom": "Développé couché barre",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "30 kg (barre 20 + 5 kg/côté)",
+              "note": "Omoplates serrées, barre au niveau des mamelons, pas de rebond",
+              "demo": "Barbell_Bench_Press_-_Medium_Grip"
+            },
+            {
+              "nom": "Lat pulldown",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "30 kg",
+              "note": "Prise pronation largeur épaules +10 cm, tirer vers le haut de la poitrine",
+              "demo": "Wide-Grip_Lat_Pulldown"
+            },
+            {
+              "nom": "Leg extension",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "20 kg",
+              "note": "Dos bien calé, extension complète, 1s de contraction en haut",
+              "demo": "Leg_Extensions"
+            },
+            {
+              "nom": "Élévations latérales haltères",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 60,
+              "poids_depart": "4 kg / bras",
+              "note": "Coudes légèrement fléchis, monter à hauteur d'épaules, pas plus haut. Léger.",
+              "demo": "Side_Lateral_Raise"
+            },
+            {
+              "nom": "Tricep pulldown corde",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 60,
+              "poids_depart": "15 kg",
+              "note": "Coudes collés au corps, extension complète, écarter la corde en bas",
+              "demo": "Triceps_Pushdown_-_Rope_Attachment"
+            },
+            {
+              "nom": "Standing calf raise",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "40 kg",
+              "note": "Amplitude complète, 1s de pause en haut",
+              "demo": "Standing_Calf_Raises"
+            }
           ]
         },
         {
           "id": "P1-B",
           "nom": "Séance B — Tirage + Épaules",
           "exercices": [
-            {"nom": "Tractions (assistées si besoin)", "series": 3, "reps": "max (viser 6-10)", "repos_s": 120, "poids_depart": "Poids du corps — ou machine assistée avec -30 kg d'aide", "note": "Prise pronation. Si 0 rep strict : machine assistée ou élastique."},
-            {"nom": "Overhead press barre", "series": 3, "reps": "10", "repos_s": 120, "poids_depart": "20 kg (barre vide)", "note": "Fessiers serrés, ne pas cambrer, barre au-dessus des oreilles en haut"},
-            {"nom": "Tirage horizontal machine (T-bar)", "series": 3, "reps": "10", "repos_s": 90, "poids_depart": "25 kg (hors poids barre)", "note": "Buste appuyé, tirer vers le bas du sternum, contracter les omoplates"},
-            {"nom": "Leg press", "series": 3, "reps": "10", "repos_s": 120, "poids_depart": "60 kg (hors chariot)", "note": "Pieds centrés, descendre jusqu'à 90°, ne pas verrouiller genoux"},
-            {"nom": "Seated leg curl", "series": 3, "reps": "12", "repos_s": 75, "poids_depart": "20 kg", "note": "Dos calé, tempo lent, contracter les ischios en fin de mouvement"},
-            {"nom": "Pec deck inversé (rear delt fly)", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "15 kg", "note": "Buste contre le dossier, écarter les bras, serrer les omoplates. Léger."},
-            {"nom": "Bicep curl haltères", "series": 3, "reps": "12", "repos_s": 60, "poids_depart": "7 kg / bras", "note": "Coudes fixes, supination en haut du mouvement"}
+            {
+              "nom": "Tractions (assistées si besoin)",
+              "series": 3,
+              "reps": "max (viser 6-10)",
+              "repos_s": 120,
+              "poids_depart": "Poids du corps — ou machine assistée avec -30 kg d'aide",
+              "note": "Prise pronation. Si 0 rep strict : machine assistée ou élastique.",
+              "demo": "Band_Assisted_Pull-Up"
+            },
+            {
+              "nom": "Overhead press barre",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "20 kg (barre vide)",
+              "note": "Fessiers serrés, ne pas cambrer, barre au-dessus des oreilles en haut",
+              "demo": "Standing_Military_Press"
+            },
+            {
+              "nom": "Tirage horizontal machine (T-bar)",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "25 kg (hors poids barre)",
+              "note": "Buste appuyé, tirer vers le bas du sternum, contracter les omoplates",
+              "demo": "T-Bar_Row_with_Handle"
+            },
+            {
+              "nom": "Leg press",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "60 kg (hors chariot)",
+              "note": "Pieds centrés, descendre jusqu'à 90°, ne pas verrouiller genoux",
+              "demo": "Leg_Press"
+            },
+            {
+              "nom": "Seated leg curl",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "20 kg",
+              "note": "Dos calé, tempo lent, contracter les ischios en fin de mouvement",
+              "demo": "Seated_Leg_Curl"
+            },
+            {
+              "nom": "Pec deck inversé (rear delt fly)",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "15 kg",
+              "note": "Buste contre le dossier, écarter les bras, serrer les omoplates. Léger.",
+              "demo": "Reverse_Flyes"
+            },
+            {
+              "nom": "Bicep curl haltères",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 60,
+              "poids_depart": "7 kg / bras",
+              "note": "Coudes fixes, supination en haut du mouvement",
+              "demo": "Dumbbell_Bicep_Curl"
+            }
           ]
         },
         {
           "id": "P1-C",
           "nom": "Séance C — Volume équilibré",
           "exercices": [
-            {"nom": "Chest press machine", "series": 3, "reps": "10", "repos_s": 90, "poids_depart": "25 kg", "note": "Poignées à hauteur des mamelons, ne pas bloquer les coudes en fin de poussée"},
-            {"nom": "Seated cable row", "series": 3, "reps": "10", "repos_s": 90, "poids_depart": "30 kg", "note": "Dos droit, tirer vers le nombril, contracter les omoplates"},
-            {"nom": "Leg press", "series": 3, "reps": "12", "repos_s": 90, "poids_depart": "55 kg (un peu plus léger qu'en séance B)", "note": "Séance C plus légère que B, focus volume"},
-            {"nom": "Ab crunch machine", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "15 kg", "note": "Enrouler le tronc, ne pas tirer sur la nuque"},
-            {"nom": "Standing calf raise", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "40 kg", "note": "Amplitude complète"},
-            {"nom": "Curl + tricep pulldown (superset)", "series": 3, "reps": "12 chacun", "repos_s": 60, "poids_depart": "6 kg / bras + 15 kg au câble", "note": "Enchaîner biceps puis triceps sans repos entre les deux"},
-            {"nom": "Pompes (finisher)", "series": 3, "reps": "max", "repos_s": 60, "poids_depart": "Poids du corps", "note": "Coudes à 45°, corps aligné. Jusqu'à l'échec technique."}
+            {
+              "nom": "Chest press machine",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "25 kg",
+              "note": "Poignées à hauteur des mamelons, ne pas bloquer les coudes en fin de poussée",
+              "demo": "Leverage_Chest_Press"
+            },
+            {
+              "nom": "Seated cable row",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "30 kg",
+              "note": "Dos droit, tirer vers le nombril, contracter les omoplates",
+              "demo": "Seated_Cable_Rows"
+            },
+            {
+              "nom": "Leg press",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 90,
+              "poids_depart": "55 kg (un peu plus léger qu'en séance B)",
+              "note": "Séance C plus légère que B, focus volume",
+              "demo": "Leg_Press"
+            },
+            {
+              "nom": "Ab crunch machine",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "15 kg",
+              "note": "Enrouler le tronc, ne pas tirer sur la nuque",
+              "demo": "Ab_Crunch_Machine"
+            },
+            {
+              "nom": "Standing calf raise",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "40 kg",
+              "note": "Amplitude complète",
+              "demo": "Standing_Calf_Raises"
+            },
+            {
+              "nom": "Curl + tricep pulldown (superset)",
+              "series": 3,
+              "reps": "12 chacun",
+              "repos_s": 60,
+              "poids_depart": "6 kg / bras + 15 kg au câble",
+              "note": "Enchaîner biceps puis triceps sans repos entre les deux",
+              "demo": "Triceps_Pushdown_-_Rope_Attachment"
+            },
+            {
+              "nom": "Pompes (finisher)",
+              "series": 3,
+              "reps": "max",
+              "repos_s": 60,
+              "poids_depart": "Poids du corps",
+              "note": "Coudes à 45°, corps aligné. Jusqu'à l'échec technique.",
+              "demo": "Pushups"
+            }
           ]
         }
       ]
@@ -77,39 +245,200 @@
           "id": "P2-A",
           "nom": "Séance A — Jambes + Pec",
           "exercices": [
-            {"nom": "Squat barre", "series": 4, "reps": "8", "repos_s": 150, "poids_depart": "50 kg (à ajuster selon fin de phase 1)", "note": "Lourd mais technique propre. Demander un pareur si proche du max."},
-            {"nom": "Développé couché barre", "series": 4, "reps": "8", "repos_s": 120, "poids_depart": "37,5 kg", "note": "Pareur conseillé sur les dernières séries lourdes"},
-            {"nom": "Lat pulldown", "series": 3, "reps": "10", "repos_s": 90, "poids_depart": "37,5 kg", "note": "Contraction 1s en bas"},
-            {"nom": "Leg extension", "series": 3, "reps": "12", "repos_s": 75, "poids_depart": "25 kg", "note": "Dernière série en drop set (réduire de 30%, enchaîner jusqu'à l'échec)"},
-            {"nom": "Élévations latérales haltères", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "5 kg / bras", "note": "Ne pas tricher avec l'élan — si tu triches, réduis la charge"},
-            {"nom": "Tricep pulldown corde", "series": 3, "reps": "12", "repos_s": 60, "poids_depart": "20 kg"},
-            {"nom": "Standing calf raise", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "50 kg", "note": "Ajouter une 4e série si les mollets ne chauffent pas"}
+            {
+              "nom": "Squat barre",
+              "series": 4,
+              "reps": "8",
+              "repos_s": 150,
+              "poids_depart": "50 kg (à ajuster selon fin de phase 1)",
+              "note": "Lourd mais technique propre. Demander un pareur si proche du max.",
+              "demo": "Barbell_Squat"
+            },
+            {
+              "nom": "Développé couché barre",
+              "series": 4,
+              "reps": "8",
+              "repos_s": 120,
+              "poids_depart": "37,5 kg",
+              "note": "Pareur conseillé sur les dernières séries lourdes",
+              "demo": "Barbell_Bench_Press_-_Medium_Grip"
+            },
+            {
+              "nom": "Lat pulldown",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "37,5 kg",
+              "note": "Contraction 1s en bas",
+              "demo": "Wide-Grip_Lat_Pulldown"
+            },
+            {
+              "nom": "Leg extension",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "25 kg",
+              "note": "Dernière série en drop set (réduire de 30%, enchaîner jusqu'à l'échec)",
+              "demo": "Leg_Extensions"
+            },
+            {
+              "nom": "Élévations latérales haltères",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "5 kg / bras",
+              "note": "Ne pas tricher avec l'élan — si tu triches, réduis la charge",
+              "demo": "Side_Lateral_Raise"
+            },
+            {
+              "nom": "Tricep pulldown corde",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 60,
+              "poids_depart": "20 kg",
+              "demo": "Triceps_Pushdown_-_Rope_Attachment"
+            },
+            {
+              "nom": "Standing calf raise",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "50 kg",
+              "note": "Ajouter une 4e série si les mollets ne chauffent pas",
+              "demo": "Standing_Calf_Raises"
+            }
           ]
         },
         {
           "id": "P2-B",
           "nom": "Séance B — Tirage + Épaules",
           "exercices": [
-            {"nom": "Tractions (lestées si +10 reps)", "series": 4, "reps": "6-10", "repos_s": 150, "poids_depart": "Poids du corps — lester à +2,5 kg dès que 10 reps propres", "note": "Si tu dépasses 10 reps en poids du corps : ajouter une ceinture de lest"},
-            {"nom": "Overhead press barre", "series": 4, "reps": "8", "repos_s": 120, "poids_depart": "25 kg", "note": "Barre démarre au niveau de la clavicule, pousse jusqu'à verrouillage"},
-            {"nom": "Tirage horizontal machine (T-bar)", "series": 4, "reps": "10", "repos_s": 90, "poids_depart": "35 kg"},
-            {"nom": "Leg press", "series": 4, "reps": "10", "repos_s": 120, "poids_depart": "80 kg", "note": "Charges lourdes, amplitude complète"},
-            {"nom": "Seated leg curl", "series": 3, "reps": "12", "repos_s": 75, "poids_depart": "25 kg", "note": "Dernière série drop set"},
-            {"nom": "Pec deck inversé (rear delt fly)", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "20 kg"},
-            {"nom": "Bicep curl haltères", "series": 3, "reps": "10-12", "repos_s": 60, "poids_depart": "8 kg / bras", "note": "Dernière série drop set"}
+            {
+              "nom": "Tractions (lestées si +10 reps)",
+              "series": 4,
+              "reps": "6-10",
+              "repos_s": 150,
+              "poids_depart": "Poids du corps — lester à +2,5 kg dès que 10 reps propres",
+              "note": "Si tu dépasses 10 reps en poids du corps : ajouter une ceinture de lest",
+              "demo": "Weighted_Pull_Ups"
+            },
+            {
+              "nom": "Overhead press barre",
+              "series": 4,
+              "reps": "8",
+              "repos_s": 120,
+              "poids_depart": "25 kg",
+              "note": "Barre démarre au niveau de la clavicule, pousse jusqu'à verrouillage",
+              "demo": "Standing_Military_Press"
+            },
+            {
+              "nom": "Tirage horizontal machine (T-bar)",
+              "series": 4,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "35 kg",
+              "demo": "T-Bar_Row_with_Handle"
+            },
+            {
+              "nom": "Leg press",
+              "series": 4,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "80 kg",
+              "note": "Charges lourdes, amplitude complète",
+              "demo": "Leg_Press"
+            },
+            {
+              "nom": "Seated leg curl",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "25 kg",
+              "note": "Dernière série drop set",
+              "demo": "Seated_Leg_Curl"
+            },
+            {
+              "nom": "Pec deck inversé (rear delt fly)",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "20 kg",
+              "demo": "Reverse_Flyes"
+            },
+            {
+              "nom": "Bicep curl haltères",
+              "series": 3,
+              "reps": "10-12",
+              "repos_s": 60,
+              "poids_depart": "8 kg / bras",
+              "note": "Dernière série drop set",
+              "demo": "Dumbbell_Bicep_Curl"
+            }
           ]
         },
         {
           "id": "P2-C",
           "nom": "Séance C — Volume équilibré",
           "exercices": [
-            {"nom": "Chest press machine", "series": 4, "reps": "10", "repos_s": 90, "poids_depart": "32,5 kg", "note": "Angle différent du bench (Séance A), ne cherche pas la même charge"},
-            {"nom": "Seated cable row", "series": 4, "reps": "10", "repos_s": 90, "poids_depart": "40 kg"},
-            {"nom": "Leg press (lourd)", "series": 3, "reps": "12", "repos_s": 90, "poids_depart": "70 kg", "note": "Pump maximal, viser la brûlure"},
-            {"nom": "Ab crunch machine", "series": 3, "reps": "15", "repos_s": 60, "poids_depart": "20 kg"},
-            {"nom": "Standing calf raise", "series": 4, "reps": "15", "repos_s": 60, "poids_depart": "50 kg"},
-            {"nom": "Curl + tricep pulldown (superset)", "series": 3, "reps": "12 chacun", "repos_s": 60, "poids_depart": "7 kg / bras + 20 kg au câble"},
-            {"nom": "Pompes (finisher)", "series": 3, "reps": "max", "repos_s": 60, "poids_depart": "Poids du corps", "note": "Jusqu'à l'échec technique. Noter le nombre total pour progresser."}
+            {
+              "nom": "Chest press machine",
+              "series": 4,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "32,5 kg",
+              "note": "Angle différent du bench (Séance A), ne cherche pas la même charge",
+              "demo": "Leverage_Chest_Press"
+            },
+            {
+              "nom": "Seated cable row",
+              "series": 4,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "40 kg",
+              "demo": "Seated_Cable_Rows"
+            },
+            {
+              "nom": "Leg press (lourd)",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 90,
+              "poids_depart": "70 kg",
+              "note": "Pump maximal, viser la brûlure",
+              "demo": "Leg_Press"
+            },
+            {
+              "nom": "Ab crunch machine",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "20 kg",
+              "demo": "Ab_Crunch_Machine"
+            },
+            {
+              "nom": "Standing calf raise",
+              "series": 4,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "50 kg",
+              "demo": "Standing_Calf_Raises"
+            },
+            {
+              "nom": "Curl + tricep pulldown (superset)",
+              "series": 3,
+              "reps": "12 chacun",
+              "repos_s": 60,
+              "poids_depart": "7 kg / bras + 20 kg au câble",
+              "demo": "Triceps_Pushdown_-_Rope_Attachment"
+            },
+            {
+              "nom": "Pompes (finisher)",
+              "series": 3,
+              "reps": "max",
+              "repos_s": 60,
+              "poids_depart": "Poids du corps",
+              "note": "Jusqu'à l'échec technique. Noter le nombre total pour progresser.",
+              "demo": "Pushups"
+            }
           ]
         }
       ]
