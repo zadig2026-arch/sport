@@ -145,6 +145,16 @@ main { padding: 16px; max-width: 760px; margin: 0 auto; }
   font-size: 14px;
   margin-bottom: 10px;
 }
+.exercise-start {
+  font-size: 13px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
 .exercise-note {
   font-size: 13px;
   color: var(--muted);

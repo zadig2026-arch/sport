@@ -120,6 +120,13 @@ function renderExerciseCard(ex, idx, sessionId) {
   meta.textContent = `${ex.series} × ${ex.reps} · repos ${formatRest(ex.repos_s)}`;
   card.appendChild(meta);
 
+  if (ex.poids_depart) {
+    const start = document.createElement('div');
+    start.className = 'exercise-start';
+    start.textContent = `Départ recommandé : ${ex.poids_depart}`;
+    card.appendChild(start);
+  }
+
   if (ex.note) {
     const note = document.createElement('div');
     note.className = 'exercise-note';

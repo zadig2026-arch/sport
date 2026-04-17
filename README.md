@@ -1,8 +1,8 @@
-# Sport — Programme full body prise de masse
+# Sport — Programme Machines Confort
 
-App web locale (PWA) pour suivre ton programme 4 mois depuis ton iPhone à la salle.
+App web locale (PWA) pour suivre ton programme depuis ton iPhone à la salle.
 
-- **Programme** : 16 semaines, full body 3x/semaine, 4 phases (adaptation → hypertrophie → force → finition)
+- **Programme** : 12 semaines, full body 3x/semaine, 2 phases (adaptation → progression). Dominante machines + compound maîtrisés (squat, bench, overhead press, tractions).
 - **Tracker** : coche chaque série, note tes charges, vois la charge de la séance précédente pour viser la progression
 - **Timer de repos** : lancé auto quand tu valides une série
 - **Suivi de poids** : pesée hebdo, graphique, alertes d'ajustement calorique
@@ -73,7 +73,7 @@ Sport/
 ├── icon-192.png          # Icône écran d'accueil
 ├── icon-512.png          # Icône HD
 └── data/
-    ├── programme.json    # 4 phases × 3 séances × exercices détaillés
+    ├── programme.json    # 2 phases × 3 séances × exercices détaillés
     └── nutrition.json    # Repas, liste de courses, macros
 ```
 
