@@ -292,6 +292,10 @@ main { padding: 16px; max-width: 760px; margin: 0 auto; }
 }
 .set-row input[type=number]::-webkit-outer-spin-button,
 .set-row input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+.set-row input.prefill {
+  color: var(--muted);
+  border-style: dashed;
+}
 .set-check {
   width: 44px;
   height: 44px;

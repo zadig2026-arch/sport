@@ -7,7 +7,9 @@ let currentSessionId = null;
 
 function loadState() {
   try {
-    return JSON.parse(localStorage.getItem(LS_KEY)) || defaultState();
+    const s = JSON.parse(localStorage.getItem(LS_KEY)) || defaultState();
+    if (!s.lastByExercise) s.lastByExercise = {};
+    return s;
   } catch {
     return defaultState();
   }
@@ -18,6 +20,7 @@ function defaultState() {
     phaseId: 'phase1',
     loads: {},      // { sessionId: { exerciseIdx: { setIdx: "60" } } }
     checks: {},     // { sessionId: { exerciseIdx: { setIdx: true } } }
+    lastByExercise: {}, // { exerciseName: { kg: "60", reps: "10", date: "..." } }
     weights: [],    // [{ date: "2026-04-17", kg: 69.2 }]
     lastSession: null
   };
@@ -230,7 +233,7 @@ function renderExerciseCard(ex, idx, sessionId) {
   const setsWrap = document.createElement('div');
   setsWrap.className = 'sets';
   for (let i = 0; i < ex.series; i++) {
-    setsWrap.appendChild(renderSetRow(sessionId, idx, i, ex.repos_s));
+    setsWrap.appendChild(renderSetRow(sessionId, idx, i, ex.repos_s, ex.nom));
   }
   card.appendChild(setsWrap);
 
@@ -243,7 +246,7 @@ function renderExerciseCard(ex, idx, sessionId) {
   return card;
 }
 
-function renderSetRow(sessionId, exIdx, setIdx, restS) {
+function renderSetRow(sessionId, exIdx, setIdx, restS, exerciseName) {
   const row = document.createElement('div');
   row.className = 'set-row';
 
@@ -252,17 +255,26 @@ function renderSetRow(sessionId, exIdx, setIdx, restS) {
   lbl.textContent = `S${setIdx + 1}`;
   row.appendChild(lbl);
 
+  const lastForEx = state.lastByExercise?.[exerciseName];
   const input = document.createElement('input');
   input.type = 'number';
   input.inputMode = 'decimal';
   input.step = '0.5';
-  input.placeholder = 'kg';
-  const savedLoad = state.loads[sessionId]?.[exIdx]?.[setIdx] || '';
-  input.value = savedLoad;
+  input.placeholder = lastForEx?.kg ? `${lastForEx.kg} kg` : 'kg';
+  const savedLoad = state.loads[sessionId]?.[exIdx]?.[setIdx];
+  input.value = savedLoad ?? (lastForEx?.kg ?? '');
+  if (!savedLoad && lastForEx?.kg) input.classList.add('prefill');
+  input.onfocus = () => input.classList.remove('prefill');
   input.oninput = () => {
+    input.classList.remove('prefill');
     state.loads[sessionId] = state.loads[sessionId] || {};
     state.loads[sessionId][exIdx] = state.loads[sessionId][exIdx] || {};
     state.loads[sessionId][exIdx][setIdx] = input.value;
+    if (input.value && exerciseName) {
+      state.lastByExercise[exerciseName] = state.lastByExercise[exerciseName] || {};
+      state.lastByExercise[exerciseName].kg = input.value;
+      state.lastByExercise[exerciseName].date = new Date().toISOString().slice(0, 10);
+    }
     saveState();
   };
   row.appendChild(input);
@@ -270,14 +282,21 @@ function renderSetRow(sessionId, exIdx, setIdx, restS) {
   const repsInput = document.createElement('input');
   repsInput.type = 'number';
   repsInput.inputMode = 'numeric';
-  repsInput.placeholder = 'reps';
+  repsInput.placeholder = lastForEx?.reps ? `${lastForEx.reps} reps` : 'reps';
   repsInput.style.maxWidth = '70px';
-  const savedReps = state.loads[sessionId]?.[exIdx]?.['r' + setIdx] || '';
-  repsInput.value = savedReps;
+  const savedReps = state.loads[sessionId]?.[exIdx]?.['r' + setIdx];
+  repsInput.value = savedReps ?? (lastForEx?.reps ?? '');
+  if (!savedReps && lastForEx?.reps) repsInput.classList.add('prefill');
+  repsInput.onfocus = () => repsInput.classList.remove('prefill');
   repsInput.oninput = () => {
+    repsInput.classList.remove('prefill');
     state.loads[sessionId] = state.loads[sessionId] || {};
     state.loads[sessionId][exIdx] = state.loads[sessionId][exIdx] || {};
     state.loads[sessionId][exIdx]['r' + setIdx] = repsInput.value;
+    if (repsInput.value && exerciseName) {
+      state.lastByExercise[exerciseName] = state.lastByExercise[exerciseName] || {};
+      state.lastByExercise[exerciseName].reps = repsInput.value;
+    }
     saveState();
   };
   row.appendChild(repsInput);
@@ -301,23 +320,23 @@ function renderSetRow(sessionId, exIdx, setIdx, restS) {
 }
 
 function getPreviousLoads(exerciseName, sessionId) {
-  // Look at all history entries, find latest session where this exercise was logged
-  const sessionData = state.loads[sessionId];
-  if (!sessionData) return null;
-  // Last saved loads for this session's exercise with matching name
   const session = getCurrentSession();
-  if (!session) return null;
-  const idx = session.exercices.findIndex(e => e.nom === exerciseName);
-  if (idx < 0) return null;
-  const setLoads = sessionData[idx];
-  if (!setLoads) return null;
-  const parts = [];
-  Object.keys(setLoads).filter(k => !k.startsWith('r')).forEach(k => {
-    const kg = setLoads[k];
-    const reps = setLoads['r' + k];
-    if (kg) parts.push(reps ? `${kg}kg×${reps}` : `${kg}kg`);
-  });
-  return parts.length ? parts.join(' · ') : null;
+  const idx = session?.exercices.findIndex(e => e.nom === exerciseName);
+  const setLoads = idx >= 0 ? state.loads[sessionId]?.[idx] : null;
+  if (setLoads) {
+    const parts = [];
+    Object.keys(setLoads).filter(k => !k.startsWith('r')).forEach(k => {
+      const kg = setLoads[k];
+      const reps = setLoads['r' + k];
+      if (kg) parts.push(reps ? `${kg}kg×${reps}` : `${kg}kg`);
+    });
+    if (parts.length) return parts.join(' · ');
+  }
+  const last = state.lastByExercise?.[exerciseName];
+  if (last?.kg) {
+    return last.reps ? `${last.kg}kg×${last.reps}${last.date ? ' (' + last.date + ')' : ''}` : `${last.kg}kg`;
+  }
+  return null;
 }
 
 function formatRest(s) {
