@@ -48,13 +48,13 @@
               "demo": "Standing_Military_Press"
             },
             {
-              "nom": "Développé incliné haltères",
+              "nom": "Dips (penché en avant, pecs)",
               "series": 3,
-              "reps": "12",
+              "reps": "max (viser 8-12)",
               "repos_s": 90,
-              "poids_depart": "12 kg / bras",
-              "note": "Banc à 30°, cible le haut des pecs. Coudes à ~45° du buste.",
-              "demo": "Incline_Dumbbell_Press"
+              "poids_depart": "Poids du corps — machine assistée si moins de 6 reps",
+              "note": "Buste penché en avant, coudes vers l'arrière pour cibler les pecs (pas droit = triceps). Descendre jusqu'à épaules au niveau des coudes. Si trop dur : dips assistés (machine ou élastique) ou négatives.",
+              "demo": "Dips_-_Chest_Version"
             },
             {
               "nom": "Élévations latérales haltères",
@@ -210,13 +210,13 @@
           "nom": "Upper — Haut du corps (2e dose)",
           "exercices": [
             {
-              "nom": "Chest press machine",
+              "nom": "Dips (penché en avant, pecs)",
               "series": 3,
-              "reps": "10",
+              "reps": "max (viser 8-12)",
               "repos_s": 90,
-              "poids_depart": "25 kg",
-              "note": "2e stimulus pecs de la semaine, sans la fatigue de la barre. Poignées à hauteur des mamelons.",
-              "demo": "Leverage_Chest_Press"
+              "poids_depart": "Poids du corps — machine assistée si moins de 6 reps",
+              "note": "2e dose pecs/triceps de la semaine. Buste penché en avant, coudes vers l'arrière. Assisté si besoin.",
+              "demo": "Dips_-_Chest_Version"
             },
             {
               "nom": "Lat pulldown (poulie haute)",
@@ -358,13 +358,13 @@
               "demo": "Standing_Military_Press"
             },
             {
-              "nom": "Développé incliné haltères",
-              "series": 3,
-              "reps": "10",
-              "repos_s": 90,
-              "poids_depart": "14 kg / bras",
-              "note": "Haut des pecs. Cherche l'étirement en bas.",
-              "demo": "Incline_Dumbbell_Press"
+              "nom": "Dips (penché en avant, pecs)",
+              "series": 4,
+              "reps": "8-12",
+              "repos_s": 120,
+              "poids_depart": "Poids du corps — lester dès que 12 reps propres",
+              "note": "Buste penché en avant, coudes vers l'arrière. Lester (ceinture) quand 12 reps deviennent faciles. Dernière série jusqu'à l'échec.",
+              "demo": "Dips_-_Chest_Version"
             },
             {
               "nom": "Élévations latérales haltères",
@@ -518,13 +518,13 @@
           "nom": "Upper — Haut du corps (2e dose)",
           "exercices": [
             {
-              "nom": "Chest press machine",
+              "nom": "Dips (penché en avant, pecs)",
               "series": 4,
-              "reps": "10",
-              "repos_s": 90,
-              "poids_depart": "35 kg",
-              "note": "2e stimulus pecs. Ne cherche pas la charge de la barre, cherche le volume propre.",
-              "demo": "Leverage_Chest_Press"
+              "reps": "8-12",
+              "repos_s": 120,
+              "poids_depart": "Poids du corps — lester dès que 12 reps propres",
+              "note": "2e dose pecs/triceps. Buste penché en avant. Lester quand 12 reps faciles, sinon poids du corps. Dernière série à l'échec.",
+              "demo": "Dips_-_Chest_Version"
             },
             {
               "nom": "Lat pulldown (poulie haute)",
