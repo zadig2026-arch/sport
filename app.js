@@ -6,22 +6,28 @@ let nutrition = null;
 let currentSessionId = null;
 
 function loadState() {
+  let s;
   try {
-    const s = JSON.parse(localStorage.getItem(LS_KEY)) || defaultState();
-    if (!s.lastByExercise) s.lastByExercise = {};
-    return s;
+    s = JSON.parse(localStorage.getItem(LS_KEY)) || defaultState();
   } catch {
-    return defaultState();
+    s = defaultState();
   }
+  // Migration / garde-fous : un état sauvegardé avant l'ajout de l'historique
+  // n'a pas le champ `history`, on le normalise pour éviter les crashs.
+  if (!s.loads) s.loads = {};
+  if (!s.checks) s.checks = {};
+  if (!Array.isArray(s.weights)) s.weights = [];
+  if (!Array.isArray(s.history)) s.history = [];
+  return s;
 }
 function defaultState() {
   return {
     week: 1,
     phaseId: 'phase1',
-    loads: {},      // { sessionId: { exerciseIdx: { setIdx: "60" } } }
+    loads: {},      // { sessionId: { exerciseIdx: { setIdx: "60" } } } — séance en cours (tampon)
     checks: {},     // { sessionId: { exerciseIdx: { setIdx: true } } }
-    lastByExercise: {}, // { exerciseName: { kg: "60", reps: "10", date: "..." } }
     weights: [],    // [{ date: "2026-04-17", kg: 69.2 }]
+    history: [],    // [{ date, sessionId, sessionName, phaseId, week, exercises: [{ nom, sets: [{kg, reps}] }] }] — plus récent en tête
     lastSession: null
   };
 }
@@ -48,6 +54,7 @@ async function init() {
   setupSettings();
   setupReset();
   populateSessionSelect();
+  setupProgression();
   renderSession();
   renderNutrition();
   renderSuivi();
@@ -63,6 +70,7 @@ function setupTabs() {
       btn.classList.add('active');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
       if (btn.dataset.tab === 'suivi') renderSuivi();
+      if (btn.dataset.tab === 'progression') renderProgression();
     });
   });
 }
@@ -222,7 +230,7 @@ function renderExerciseCard(ex, idx, sessionId) {
     card.appendChild(note);
   }
 
-  const prev = getPreviousLoads(ex.nom, sessionId);
+  const prev = getPreviousLoads(ex.nom);
   if (prev) {
     const p = document.createElement('div');
     p.className = 'prev-load';
@@ -233,7 +241,7 @@ function renderExerciseCard(ex, idx, sessionId) {
   const setsWrap = document.createElement('div');
   setsWrap.className = 'sets';
   for (let i = 0; i < ex.series; i++) {
-    setsWrap.appendChild(renderSetRow(sessionId, idx, i, ex.repos_s, ex.nom));
+    setsWrap.appendChild(renderSetRow(sessionId, idx, i, ex.repos_s));
   }
   card.appendChild(setsWrap);
 
@@ -246,7 +254,7 @@ function renderExerciseCard(ex, idx, sessionId) {
   return card;
 }
 
-function renderSetRow(sessionId, exIdx, setIdx, restS, exerciseName) {
+function renderSetRow(sessionId, exIdx, setIdx, restS) {
   const row = document.createElement('div');
   row.className = 'set-row';
 
@@ -255,26 +263,17 @@ function renderSetRow(sessionId, exIdx, setIdx, restS, exerciseName) {
   lbl.textContent = `S${setIdx + 1}`;
   row.appendChild(lbl);
 
-  const lastForEx = state.lastByExercise?.[exerciseName];
   const input = document.createElement('input');
   input.type = 'number';
   input.inputMode = 'decimal';
   input.step = '0.5';
-  input.placeholder = lastForEx?.kg ? `${lastForEx.kg} kg` : 'kg';
-  const savedLoad = state.loads[sessionId]?.[exIdx]?.[setIdx];
-  input.value = savedLoad ?? (lastForEx?.kg ?? '');
-  if (!savedLoad && lastForEx?.kg) input.classList.add('prefill');
-  input.onfocus = () => input.classList.remove('prefill');
+  input.placeholder = 'kg';
+  const savedLoad = state.loads[sessionId]?.[exIdx]?.[setIdx] || '';
+  input.value = savedLoad;
   input.oninput = () => {
-    input.classList.remove('prefill');
     state.loads[sessionId] = state.loads[sessionId] || {};
     state.loads[sessionId][exIdx] = state.loads[sessionId][exIdx] || {};
     state.loads[sessionId][exIdx][setIdx] = input.value;
-    if (input.value && exerciseName) {
-      state.lastByExercise[exerciseName] = state.lastByExercise[exerciseName] || {};
-      state.lastByExercise[exerciseName].kg = input.value;
-      state.lastByExercise[exerciseName].date = new Date().toISOString().slice(0, 10);
-    }
     saveState();
   };
   row.appendChild(input);
@@ -282,21 +281,14 @@ function renderSetRow(sessionId, exIdx, setIdx, restS, exerciseName) {
   const repsInput = document.createElement('input');
   repsInput.type = 'number';
   repsInput.inputMode = 'numeric';
-  repsInput.placeholder = lastForEx?.reps ? `${lastForEx.reps} reps` : 'reps';
+  repsInput.placeholder = 'reps';
   repsInput.style.maxWidth = '70px';
-  const savedReps = state.loads[sessionId]?.[exIdx]?.['r' + setIdx];
-  repsInput.value = savedReps ?? (lastForEx?.reps ?? '');
-  if (!savedReps && lastForEx?.reps) repsInput.classList.add('prefill');
-  repsInput.onfocus = () => repsInput.classList.remove('prefill');
+  const savedReps = state.loads[sessionId]?.[exIdx]?.['r' + setIdx] || '';
+  repsInput.value = savedReps;
   repsInput.oninput = () => {
-    repsInput.classList.remove('prefill');
     state.loads[sessionId] = state.loads[sessionId] || {};
     state.loads[sessionId][exIdx] = state.loads[sessionId][exIdx] || {};
     state.loads[sessionId][exIdx]['r' + setIdx] = repsInput.value;
-    if (repsInput.value && exerciseName) {
-      state.lastByExercise[exerciseName] = state.lastByExercise[exerciseName] || {};
-      state.lastByExercise[exerciseName].reps = repsInput.value;
-    }
     saveState();
   };
   row.appendChild(repsInput);
@@ -319,22 +311,14 @@ function renderSetRow(sessionId, exIdx, setIdx, restS, exerciseName) {
   return row;
 }
 
-function getPreviousLoads(exerciseName, sessionId) {
-  const session = getCurrentSession();
-  const idx = session?.exercices.findIndex(e => e.nom === exerciseName);
-  const setLoads = idx >= 0 ? state.loads[sessionId]?.[idx] : null;
-  if (setLoads) {
-    const parts = [];
-    Object.keys(setLoads).filter(k => !k.startsWith('r')).forEach(k => {
-      const kg = setLoads[k];
-      const reps = setLoads['r' + k];
-      if (kg) parts.push(reps ? `${kg}kg×${reps}` : `${kg}kg`);
-    });
-    if (parts.length) return parts.join(' · ');
-  }
-  const last = state.lastByExercise?.[exerciseName];
-  if (last?.kg) {
-    return last.reps ? `${last.kg}kg×${last.reps}${last.date ? ' (' + last.date + ')' : ''}` : `${last.kg}kg`;
+function getPreviousLoads(exerciseName) {
+  // L'historique est trié plus-récent-en-tête : on retourne la dernière fois
+  // que cet exercice (peu importe la séance) a été enregistré.
+  for (const h of state.history) {
+    const e = h.exercises.find(x => x.nom === exerciseName);
+    if (e && e.sets.length) {
+      return e.sets.map(s => s.reps ? `${s.kg}kg×${s.reps}` : `${s.kg}kg`).join(' · ');
+    }
   }
   return null;
 }
@@ -348,12 +332,52 @@ function formatRest(s) {
 
 // Finish session button
 document.addEventListener('click', e => {
-  if (e.target?.id === 'btn-finish-session') {
-    state.lastSession = currentSessionId;
-    saveState();
-    alert('Séance terminée ! Pense à manger ton post-training.');
-  }
+  if (e.target?.id === 'btn-finish-session') finishSession();
 });
+
+function finishSession() {
+  const session = getCurrentSession();
+  if (!session) return;
+
+  // Construire un instantané daté de la séance à partir du tampon de saisie.
+  const exercises = session.exercices.map((ex, idx) => {
+    const setLoads = state.loads[session.id]?.[idx] || {};
+    const sets = [];
+    for (let i = 0; i < ex.series; i++) {
+      const kg = setLoads[i];
+      const reps = setLoads['r' + i];
+      if ((kg !== undefined && kg !== '') || (reps !== undefined && reps !== '')) {
+        sets.push({ kg: kg || '', reps: reps || '' });
+      }
+    }
+    return { nom: ex.nom, sets };
+  }).filter(e => e.sets.length);
+
+  if (!exercises.length) {
+    alert('Aucune charge saisie. Renseigne au moins une série avant de terminer.');
+    return;
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+  state.history.unshift({
+    date: today,
+    sessionId: session.id,
+    sessionName: session.nom,
+    phaseId: state.phaseId,
+    week: state.week,
+    exercises
+  });
+
+  // Vider le tampon de la séance : la prochaine fois démarre propre,
+  // et "Dernière fois" s'alimente désormais depuis l'historique.
+  delete state.loads[session.id];
+  delete state.checks[session.id];
+  state.lastSession = session.id;
+  saveState();
+
+  renderSession();
+  alert('Séance enregistrée dans l\'historique ! Pense à manger ton post-training.');
+}
 
 // ===== Rest timer =====
 let restInterval = null;
@@ -405,7 +429,7 @@ function vibrate(p) { if (navigator.vibrate) navigator.vibrate(p); }
 // ===== Suivi =====
 function renderSuivi() {
   renderWeights();
-  renderRecentLoads();
+  renderHistorique();
   drawWeightChart();
 }
 
@@ -459,26 +483,37 @@ function renderWeights() {
 function drawWeightChart() {
   const canvas = document.getElementById('weight-chart');
   if (!canvas) return;
+  drawChart(
+    canvas,
+    state.weights.map(w => w.kg),
+    state.weights.map(w => w.date.slice(5)),
+    'Il faut au moins 2 pesées pour tracer le graphique'
+  );
+}
+
+// Graphique en courbe générique (poids, charges...).
+function drawChart(canvas, values, labels, emptyMsg) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;
   const h = canvas.height;
   ctx.clearRect(0, 0, w, h);
 
-  const data = state.weights;
-  if (data.length < 2) {
+  if (values.length < 2) {
     ctx.fillStyle = '#8b94a0';
-    ctx.font = '16px system-ui';
+    ctx.font = '15px system-ui';
     ctx.textAlign = 'center';
-    ctx.fillText('Il faut au moins 2 pesées pour tracer le graphique', w / 2, h / 2);
+    ctx.fillText(emptyMsg || 'Au moins 2 points pour tracer la courbe', w / 2, h / 2);
     return;
   }
 
   const pad = 40;
-  const min = Math.min(...data.map(d => d.kg)) - 1;
-  const max = Math.max(...data.map(d => d.kg)) + 1;
-  const xStep = (w - pad * 2) / (data.length - 1);
+  const min = Math.min(...values) - 1;
+  const max = Math.max(...values) + 1;
+  const span = (max - min) || 1;
+  const xStep = (w - pad * 2) / (values.length - 1);
+  const yOf = v => pad + (h - pad * 2) * (1 - (v - min) / span);
 
-  // Grid
+  // Grille + échelle Y
   ctx.strokeStyle = '#2a3038';
   ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
@@ -487,60 +522,154 @@ function drawWeightChart() {
     ctx.moveTo(pad, y);
     ctx.lineTo(w - pad, y);
     ctx.stroke();
-    const val = (max - (max - min) * (i / 4)).toFixed(1);
+    const val = (max - span * (i / 4)).toFixed(1);
     ctx.fillStyle = '#8b94a0';
     ctx.font = '11px system-ui';
     ctx.textAlign = 'right';
     ctx.fillText(val, pad - 6, y + 4);
   }
 
-  // Line
+  // Labels X (début, milieu, fin)
+  if (labels && labels.length) {
+    ctx.fillStyle = '#8b94a0';
+    ctx.font = '10px system-ui';
+    ctx.textAlign = 'center';
+    [0, Math.floor((values.length - 1) / 2), values.length - 1].forEach(i => {
+      if (labels[i]) ctx.fillText(labels[i], pad + xStep * i, h - pad + 18);
+    });
+  }
+
+  // Courbe
   ctx.strokeStyle = '#ff6b35';
   ctx.lineWidth = 3;
   ctx.beginPath();
-  data.forEach((d, i) => {
+  values.forEach((v, i) => {
     const x = pad + xStep * i;
-    const y = pad + (h - pad * 2) * (1 - (d.kg - min) / (max - min));
+    const y = yOf(v);
     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
   ctx.stroke();
 
-  // Dots
+  // Points
   ctx.fillStyle = '#ffa45c';
-  data.forEach((d, i) => {
-    const x = pad + xStep * i;
-    const y = pad + (h - pad * 2) * (1 - (d.kg - min) / (max - min));
+  values.forEach((v, i) => {
     ctx.beginPath();
-    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.arc(pad + xStep * i, yOf(v), 4, 0, Math.PI * 2);
     ctx.fill();
   });
 }
 
-function renderRecentLoads() {
-  const container = document.getElementById('recent-loads');
-  container.innerHTML = '';
-  const phase = programme.phases.find(p => p.id === state.phaseId);
-  const entries = [];
-  phase.seances.forEach(s => {
-    s.exercices.forEach((ex, idx) => {
-      const load = state.loads[s.id]?.[idx];
-      if (!load) return;
-      const maxKg = Math.max(...Object.keys(load).filter(k => !k.startsWith('r')).map(k => parseFloat(load[k])).filter(v => !isNaN(v)));
-      if (isFinite(maxKg) && maxKg > 0) {
-        entries.push({ ex: ex.nom, kg: maxKg, session: s.nom });
-      }
-    });
-  });
-  if (!entries.length) {
-    container.innerHTML = '<div class="muted">Aucune charge enregistrée.</div>';
+// ===== Historique des séances =====
+function renderHistorique() {
+  const el = document.getElementById('history-list');
+  if (!el) return;
+  el.innerHTML = '';
+  if (!state.history.length) {
+    el.innerHTML = '<div class="muted">Aucune séance enregistrée. Termine une séance pour la voir apparaître ici.</div>';
     return;
   }
-  entries.sort((a, b) => b.kg - a.kg).forEach(e => {
-    const row = document.createElement('div');
-    row.className = 'load-row';
-    row.innerHTML = `<span>${e.ex}</span><span><strong>${e.kg} kg</strong></span>`;
-    container.appendChild(row);
+  state.history.forEach(h => {
+    const entry = document.createElement('div');
+    entry.className = 'history-entry';
+
+    const totalSets = h.exercises.reduce((n, e) => n + e.sets.length, 0);
+    const head = document.createElement('button');
+    head.type = 'button';
+    head.className = 'history-head';
+    head.innerHTML = `
+      <span class="history-info">
+        <span class="history-name">${h.sessionName}</span>
+        <span class="history-meta">${h.date} · ${h.exercises.length} exo${h.exercises.length > 1 ? 's' : ''} · ${totalSets} série${totalSets > 1 ? 's' : ''}</span>
+      </span>
+      <span class="history-chevron">▾</span>`;
+
+    const body = document.createElement('div');
+    body.className = 'history-body hidden';
+    body.innerHTML = h.exercises.map(e => `
+      <div class="history-ex">
+        <span class="history-ex-name">${e.nom}</span>
+        <span class="history-ex-sets">${e.sets.map(s => s.reps ? `${s.kg || '–'}×${s.reps}` : `${s.kg || '–'} kg`).join(' · ')}</span>
+      </div>`).join('');
+
+    head.onclick = () => {
+      body.classList.toggle('hidden');
+      entry.classList.toggle('open');
+    };
+    entry.appendChild(head);
+    entry.appendChild(body);
+    el.appendChild(entry);
   });
+}
+
+// ===== Progression des charges =====
+function allExerciseNames() {
+  const set = new Set();
+  programme.phases.forEach(ph => ph.seances.forEach(s => s.exercices.forEach(e => set.add(e.nom))));
+  return [...set];
+}
+
+function setupProgression() {
+  const sel = document.getElementById('prog-exercise');
+  if (!sel) return;
+  sel.innerHTML = '';
+  allExerciseNames().forEach(n => {
+    const o = document.createElement('option');
+    o.value = n;
+    o.textContent = n;
+    sel.appendChild(o);
+  });
+  sel.onchange = renderProgression;
+}
+
+// Points chronologiques (ancien → récent) de la série la plus lourde pour un exo.
+function exerciseProgression(name) {
+  const pts = [];
+  [...state.history].reverse().forEach(h => {
+    const e = h.exercises.find(x => x.nom === name);
+    if (!e) return;
+    let top = -Infinity, topReps = '';
+    e.sets.forEach(s => {
+      const kg = parseFloat(s.kg);
+      if (!isNaN(kg) && kg > top) { top = kg; topReps = s.reps || ''; }
+    });
+    if (isFinite(top)) pts.push({ date: h.date, top, reps: topReps });
+  });
+  return pts;
+}
+
+function renderProgression() {
+  const sel = document.getElementById('prog-exercise');
+  if (!sel) return;
+  const name = sel.value;
+  const pts = exerciseProgression(name);
+  const summary = document.getElementById('prog-summary');
+  const empty = document.getElementById('prog-empty');
+  const canvas = document.getElementById('prog-chart');
+
+  if (!pts.length) {
+    summary.innerHTML = '';
+    canvas.style.display = 'none';
+    empty.textContent = 'Aucune donnée pour cet exercice. Termine une séance qui le contient pour démarrer le suivi.';
+    return;
+  }
+
+  empty.textContent = '';
+  canvas.style.display = '';
+
+  const pr = Math.max(...pts.map(p => p.top));
+  const last = pts[pts.length - 1];
+  const suggest = +(last.top + 2.5).toFixed(1);
+  summary.innerHTML = `
+    <div class="prog-stat"><div class="prog-val">${pr} kg</div><div class="prog-lbl">Record (PR)</div></div>
+    <div class="prog-stat"><div class="prog-val">${last.top} kg${last.reps ? ` × ${last.reps}` : ''}</div><div class="prog-lbl">Dernière séance</div></div>
+    <div class="prog-stat"><div class="prog-val">${suggest} kg</div><div class="prog-lbl">Prochaine cible</div></div>`;
+
+  drawChart(
+    canvas,
+    pts.map(p => p.top),
+    pts.map(p => p.date.slice(5)),
+    'Termine une 2e séance pour tracer la courbe'
+  );
 }
 
 // ===== Settings =====

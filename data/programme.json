@@ -1,18 +1,19 @@
 {
   "meta": {
-    "titre": "Upper/Lower 4-5x — 12 semaines",
+    "titre": "Push / Pull / Legs + Upper / Lower — 12 semaines",
     "duree_semaines": 12,
-    "frequence": "4 séances/semaine (Lun/Mar/Jeu/Ven) + 1 séance accessoires optionnelle (Sam)",
-    "profil_cible": "Débutant ectomorphe 69 kg, machines + compound basiques. Fréquence 2x/semaine par muscle, hinge inclus (RDL). 5e jour à faire si récup OK et appétit suit. Changer de programme après 12 semaines."
+    "frequence": "5 séances/semaine (Push, Pull, Legs, Upper, Lower) + 2 jours de repos",
+    "profil_cible": "Ectomorphe ~70 kg en prise de masse, objectif 75 kg. Machines + compound basiques. Structure PPLUL : chaque muscle touché ~2x/semaine (idéal pour grossir), avec 2 jours de repos pour la récup et l'appétit. Changer de programme après 12 semaines."
   },
   "principes": [
+    "Ordre conseillé : Lun Push, Mar Pull, Mer Legs, Jeu repos, Ven Upper, Sam Lower, Dim repos. Décale si besoin, garde 2 jours de repos.",
     "Échauffement obligatoire : 5 min vélo + 2 séries légères sur le 1er compound de la séance",
     "Tempo 2-0-1 : 2s descente, 0s pause, 1s montée contrôlée",
-    "Repos 2 min sur compound lourd, 90s sur semi-isolation, 60s sur isolation",
-    "Noter chaque charge → viser +2,5 kg ou +1 rep par semaine",
-    "Les poids de départ sont des repères pour la 1re séance — ajuster dès la 2e si trop léger ou trop lourd",
+    "Repos 2-2,5 min sur compound lourd, 90s sur semi-isolation, 60s sur isolation",
+    "Noter chaque charge → viser +2,5 kg ou +1 rep par semaine quand la technique reste propre",
+    "Les poids de départ sont des repères — ajuste dès la 2e série si trop léger ou trop lourd",
     "Si 3 semaines sans progression sur un exo : changer de variante ou deload (-10%)",
-    "5e jour (Samedi) : optionnel. Skip si fatigue, sommeil <7h, ou semaine chargée — la base 4j suffit à progresser",
+    "Upper et Lower sont la 2e dose hebdo des mêmes muscles : pas besoin d'y battre tes records de Push/Pull/Legs, cherche la qualité d'exécution et le volume",
     "Pas de cardio intense : max 1 marche/semaine. Préserver le surplus calorique"
   ],
   "phases": [
@@ -21,19 +22,19 @@
       "numero": 1,
       "nom": "Adaptation",
       "semaines": "1-2",
-      "objectif": "Calibrer les charges sur les nouveaux exercices (RDL surtout), verrouiller la technique, établir les baselines",
+      "objectif": "Caler les charges sur le nouveau découpage PPLUL, verrouiller la technique, établir les baselines avant la surcharge progressive",
       "format": "3 séries sur tout. Charges légères à modérées (50-60% de ce que tu crois pouvoir faire). Aucun drop set.",
       "seances": [
         {
-          "id": "P1-UA",
-          "nom": "Lun — Upper Push",
+          "id": "PPL-P1-PUSH",
+          "nom": "Push — Pecs / Épaules / Triceps",
           "exercices": [
             {
               "nom": "Développé couché barre",
               "series": 3,
               "reps": "10",
               "repos_s": 120,
-              "poids_depart": "30 kg (barre 20 + 5 kg/côté)",
+              "poids_depart": "35 kg (barre 20 + 7,5 kg/côté)",
               "note": "Omoplates serrées, barre au niveau des mamelons, pas de rebond",
               "demo": "Barbell_Bench_Press_-_Medium_Grip"
             },
@@ -42,25 +43,25 @@
               "series": 3,
               "reps": "10",
               "repos_s": 120,
-              "poids_depart": "20 kg (barre vide)",
+              "poids_depart": "22,5 kg",
               "note": "Fessiers serrés, ne pas cambrer, barre au-dessus des oreilles en haut",
               "demo": "Standing_Military_Press"
             },
             {
-              "nom": "Chest press machine",
+              "nom": "Développé incliné haltères",
               "series": 3,
               "reps": "12",
               "repos_s": 90,
-              "poids_depart": "20 kg",
-              "note": "Angle différent du bench. Poignées à hauteur des mamelons.",
-              "demo": "Leverage_Chest_Press"
+              "poids_depart": "12 kg / bras",
+              "note": "Banc à 30°, cible le haut des pecs. Coudes à ~45° du buste.",
+              "demo": "Incline_Dumbbell_Press"
             },
             {
               "nom": "Élévations latérales haltères",
               "series": 3,
-              "reps": "12",
+              "reps": "15",
               "repos_s": 60,
-              "poids_depart": "4 kg / bras",
+              "poids_depart": "5 kg / bras",
               "note": "Coudes légèrement fléchis, monter à hauteur d'épaules, pas plus haut",
               "demo": "Side_Lateral_Raise"
             },
@@ -69,84 +70,24 @@
               "series": 3,
               "reps": "12",
               "repos_s": 60,
-              "poids_depart": "15 kg",
+              "poids_depart": "17,5 kg",
               "note": "Coudes collés au corps, extension complète, écarter la corde en bas",
               "demo": "Triceps_Pushdown_-_Rope_Attachment"
             },
             {
-              "nom": "Pec deck inversé (rear delt fly)",
+              "nom": "Extension triceps corde au-dessus de la tête",
               "series": 3,
-              "reps": "15",
+              "reps": "12",
               "repos_s": 60,
-              "poids_depart": "15 kg",
-              "note": "Buste contre le dossier, écarter les bras, serrer les omoplates. Léger.",
-              "demo": "Reverse_Flyes"
+              "poids_depart": "12,5 kg",
+              "note": "Câble en bas, corde derrière la nuque, étirer la longue portion du triceps",
+              "demo": "Cable_Rope_Overhead_Triceps_Extension"
             }
           ]
         },
         {
-          "id": "P1-LA",
-          "nom": "Mar — Lower Squat",
-          "exercices": [
-            {
-              "nom": "Squat barre",
-              "series": 3,
-              "reps": "10",
-              "repos_s": 120,
-              "poids_depart": "40 kg (barre 20 + 10 kg/côté)",
-              "note": "Pieds largeur épaules, descendre jusqu'à cuisses parallèles, dos droit",
-              "demo": "Barbell_Squat"
-            },
-            {
-              "nom": "Leg press",
-              "series": 3,
-              "reps": "12",
-              "repos_s": 90,
-              "poids_depart": "60 kg (hors chariot)",
-              "note": "Pieds centrés, descendre jusqu'à 90°, ne pas verrouiller genoux",
-              "demo": "Leg_Press"
-            },
-            {
-              "nom": "Leg extension",
-              "series": 3,
-              "reps": "12",
-              "repos_s": 75,
-              "poids_depart": "20 kg",
-              "note": "Dos bien calé, extension complète, 1s de contraction en haut",
-              "demo": "Leg_Extensions"
-            },
-            {
-              "nom": "Seated leg curl",
-              "series": 3,
-              "reps": "10",
-              "repos_s": 75,
-              "poids_depart": "20 kg",
-              "note": "Dos calé, tempo lent, contracter les ischios en fin de mouvement",
-              "demo": "Seated_Leg_Curl"
-            },
-            {
-              "nom": "Standing calf raise",
-              "series": 4,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "40 kg",
-              "note": "Amplitude complète, 1s de pause en haut",
-              "demo": "Standing_Calf_Raises"
-            },
-            {
-              "nom": "Ab crunch machine",
-              "series": 3,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "15 kg",
-              "note": "Enrouler le tronc, ne pas tirer sur la nuque",
-              "demo": "Ab_Crunch_Machine"
-            }
-          ]
-        },
-        {
-          "id": "P1-UB",
-          "nom": "Jeu — Upper Pull",
+          "id": "PPL-P1-PULL",
+          "nom": "Pull — Dos / Arrière d'épaule / Biceps",
           "exercices": [
             {
               "nom": "Tractions (assistées si besoin)",
@@ -162,7 +103,7 @@
               "series": 3,
               "reps": "10",
               "repos_s": 90,
-              "poids_depart": "25 kg (hors poids barre)",
+              "poids_depart": "30 kg (hors poids barre)",
               "note": "Buste appuyé, tirer vers le bas du sternum, contracter les omoplates",
               "demo": "T-Bar_Row_with_Handle"
             },
@@ -171,7 +112,7 @@
               "series": 3,
               "reps": "10",
               "repos_s": 90,
-              "poids_depart": "30 kg",
+              "poids_depart": "35 kg",
               "note": "Prise large pronation, tirer vers le haut du sternum, ne pas cambrer",
               "demo": "Wide-Grip_Lat_Pulldown"
             },
@@ -180,8 +121,8 @@
               "series": 3,
               "reps": "15",
               "repos_s": 60,
-              "poids_depart": "15 kg",
-              "note": "Buste contre le dossier, écarter les bras, serrer les omoplates",
+              "poids_depart": "17,5 kg",
+              "note": "Buste contre le dossier, écarter les bras, serrer les omoplates. Léger.",
               "demo": "Reverse_Flyes"
             },
             {
@@ -189,7 +130,7 @@
               "series": 3,
               "reps": "12",
               "repos_s": 60,
-              "poids_depart": "7 kg / bras",
+              "poids_depart": "8 kg / bras",
               "note": "Coudes fixes, supination en haut du mouvement",
               "demo": "Dumbbell_Bicep_Curl"
             },
@@ -198,23 +139,143 @@
               "series": 3,
               "reps": "12",
               "repos_s": 60,
-              "poids_depart": "7 kg / bras",
+              "poids_depart": "8 kg / bras",
               "note": "Prise neutre (paumes face à face), cible brachial + avant-bras",
               "demo": "Hammer_Curls"
             }
           ]
         },
         {
-          "id": "P1-LB",
-          "nom": "Ven — Lower Hinge",
+          "id": "PPL-P1-LEGS",
+          "nom": "Legs — Quadriceps / Ischios / Mollets",
           "exercices": [
+            {
+              "nom": "Squat barre",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "45 kg (barre 20 + 12,5 kg/côté)",
+              "note": "Pieds largeur épaules, descendre jusqu'à cuisses parallèles, dos droit",
+              "demo": "Barbell_Squat"
+            },
+            {
+              "nom": "Leg press",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 90,
+              "poids_depart": "70 kg (hors chariot)",
+              "note": "Pieds centrés, descendre jusqu'à 90°, ne pas verrouiller genoux",
+              "demo": "Leg_Press"
+            },
             {
               "nom": "Soulevé de terre roumain (RDL) haltères",
               "series": 3,
               "reps": "10",
               "repos_s": 120,
-              "poids_depart": "12 kg / main",
-              "note": "Genoux légèrement fléchis et FIXES. Pousser les hanches en arrière, dos plat, descendre jusqu'à mi-tibia. Étirement contrôlé des ischios. Charges légères en phase 1, technique avant tout.",
+              "poids_depart": "14 kg / main",
+              "note": "Genoux légèrement fléchis et FIXES. Pousser les hanches en arrière, dos plat, descendre jusqu'à mi-tibia. Technique avant tout.",
+              "demo": "Romanian_Deadlift_with_Dumbbells"
+            },
+            {
+              "nom": "Leg extension",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "22,5 kg",
+              "note": "Dos bien calé, extension complète, 1s de contraction en haut",
+              "demo": "Leg_Extensions"
+            },
+            {
+              "nom": "Seated leg curl",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "22,5 kg",
+              "note": "Dos calé, tempo lent, contracter les ischios en fin de mouvement",
+              "demo": "Seated_Leg_Curl"
+            },
+            {
+              "nom": "Standing calf raise",
+              "series": 4,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "45 kg",
+              "note": "Amplitude complète, 1s de pause en haut",
+              "demo": "Standing_Calf_Raises"
+            }
+          ]
+        },
+        {
+          "id": "PPL-P1-UPPER",
+          "nom": "Upper — Haut du corps (2e dose)",
+          "exercices": [
+            {
+              "nom": "Chest press machine",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "25 kg",
+              "note": "2e stimulus pecs de la semaine, sans la fatigue de la barre. Poignées à hauteur des mamelons.",
+              "demo": "Leverage_Chest_Press"
+            },
+            {
+              "nom": "Lat pulldown (poulie haute)",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "35 kg",
+              "note": "Prise large, tirer vers le haut du sternum",
+              "demo": "Wide-Grip_Lat_Pulldown"
+            },
+            {
+              "nom": "Développé épaules haltères assis",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "12 kg / bras",
+              "note": "Dos calé, descendre haltères au niveau des oreilles, ne pas verrouiller brutalement en haut",
+              "demo": "Dumbbell_Shoulder_Press"
+            },
+            {
+              "nom": "Tirage horizontal câble (seated row)",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "35 kg",
+              "note": "Buste droit, tirer vers le nombril, serrer les omoplates, ne pas balancer",
+              "demo": "Seated_Cable_Rows"
+            },
+            {
+              "nom": "Élévations latérales haltères",
+              "series": 3,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "5 kg / bras",
+              "note": "Volume épaules supplémentaire. Focus contraction.",
+              "demo": "Side_Lateral_Raise"
+            },
+            {
+              "nom": "Superset curl + tricep pulldown",
+              "series": 3,
+              "reps": "12 chacun",
+              "repos_s": 60,
+              "poids_depart": "7 kg / bras + 15 kg au câble",
+              "note": "Enchaîner biceps puis triceps sans repos entre les deux",
+              "demo": "Triceps_Pushdown_-_Rope_Attachment"
+            }
+          ]
+        },
+        {
+          "id": "PPL-P1-LOWER",
+          "nom": "Lower — Bas du corps (focus chaîne postérieure)",
+          "exercices": [
+            {
+              "nom": "Soulevé de terre roumain (RDL) barre",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "45 kg",
+              "note": "2e dose ischios/fessiers de la semaine. Genoux fixes, hanches en arrière, dos plat. Si la lombaire arrondit, baisse la charge.",
               "demo": "Romanian_Deadlift_with_Dumbbells"
             },
             {
@@ -222,34 +283,34 @@
               "series": 3,
               "reps": "12",
               "repos_s": 90,
-              "poids_depart": "55 kg",
-              "note": "Pieds plus hauts sur la plateforme qu'en séance Squat, pour solliciter chaîne postérieure",
+              "poids_depart": "65 kg",
+              "note": "Pieds plus hauts sur la plateforme qu'en séance Legs, pour solliciter la chaîne postérieure",
               "demo": "Leg_Press"
-            },
-            {
-              "nom": "Seated leg curl",
-              "series": 3,
-              "reps": "12",
-              "repos_s": 75,
-              "poids_depart": "20 kg",
-              "note": "2e dose d'ischios de la semaine. Tempo lent, contraction en fin de mouvement.",
-              "demo": "Seated_Leg_Curl"
             },
             {
               "nom": "Hip thrust barre (ou machine)",
               "series": 3,
               "reps": "12",
               "repos_s": 90,
-              "poids_depart": "30 kg",
+              "poids_depart": "35 kg",
               "note": "Dos sur banc, barre sur les hanches, monter en serrant les fessiers, pause 1s en haut",
               "demo": "Barbell_Hip_Thrust"
+            },
+            {
+              "nom": "Seated leg curl",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "22,5 kg",
+              "note": "2e dose d'ischios isolés. Tempo lent, contraction en fin de mouvement.",
+              "demo": "Seated_Leg_Curl"
             },
             {
               "nom": "Standing calf raise",
               "series": 4,
               "reps": "15",
               "repos_s": 60,
-              "poids_depart": "40 kg",
+              "poids_depart": "45 kg",
               "note": "2e séance mollets de la semaine. Amplitude complète.",
               "demo": "Standing_Calf_Raises"
             },
@@ -261,66 +322,6 @@
               "poids_depart": "Poids du corps",
               "note": "Gainer abdos + lombaires. Coudes sous épaules, fessiers serrés, pas de creux.",
               "demo": "Plank"
-            }
-          ]
-        },
-        {
-          "id": "P1-X",
-          "nom": "Sam — Accessoires (optionnel)",
-          "exercices": [
-            {
-              "nom": "Élévations latérales haltères",
-              "series": 4,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "4 kg / bras",
-              "note": "Volume supplémentaire pour épaules. Léger, focus contraction.",
-              "demo": "Side_Lateral_Raise"
-            },
-            {
-              "nom": "Pec deck inversé (rear delt fly)",
-              "series": 4,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "15 kg",
-              "note": "Le rear delt est sous-stimulé en push/pull classiques, on rajoute du volume ici",
-              "demo": "Reverse_Flyes"
-            },
-            {
-              "nom": "Curl + tricep pulldown (superset)",
-              "series": 3,
-              "reps": "12 chacun",
-              "repos_s": 60,
-              "poids_depart": "6 kg / bras + 15 kg au câble",
-              "note": "Enchaîner biceps puis triceps sans repos entre les deux",
-              "demo": "Triceps_Pushdown_-_Rope_Attachment"
-            },
-            {
-              "nom": "Curl marteau haltères",
-              "series": 3,
-              "reps": "12",
-              "repos_s": 60,
-              "poids_depart": "6 kg / bras",
-              "note": "Brachial + avant-bras",
-              "demo": "Hammer_Curls"
-            },
-            {
-              "nom": "Standing calf raise",
-              "series": 4,
-              "reps": "20",
-              "repos_s": 60,
-              "poids_depart": "35 kg",
-              "note": "3e séance mollets : reps plus hautes pour fibres lentes",
-              "demo": "Standing_Calf_Raises"
-            },
-            {
-              "nom": "Ab crunch machine",
-              "series": 3,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "15 kg",
-              "note": "Enrouler le tronc, ne pas tirer sur la nuque",
-              "demo": "Ab_Crunch_Machine"
             }
           ]
         }
@@ -335,15 +336,15 @@
       "format": "4 séries × 6-10 reps sur les compound, 3 séries × 10-15 sur l'isolation. Charges de travail (70-80% du max). Drop set sur la dernière série d'isolation quand indiqué.",
       "seances": [
         {
-          "id": "P2-UA",
-          "nom": "Lun — Upper Push",
+          "id": "PPL-P2-PUSH",
+          "nom": "Push — Pecs / Épaules / Triceps",
           "exercices": [
             {
               "nom": "Développé couché barre",
               "series": 4,
               "reps": "8",
               "repos_s": 150,
-              "poids_depart": "37,5 kg (à ajuster selon fin de phase 1)",
+              "poids_depart": "40 kg (à ajuster selon fin de phase 1)",
               "note": "Pareur conseillé sur les dernières séries lourdes. RPE 8 max.",
               "demo": "Barbell_Bench_Press_-_Medium_Grip"
             },
@@ -352,26 +353,26 @@
               "series": 4,
               "reps": "8",
               "repos_s": 120,
-              "poids_depart": "25 kg",
+              "poids_depart": "27,5 kg",
               "note": "Barre démarre au niveau de la clavicule, pousse jusqu'à verrouillage",
               "demo": "Standing_Military_Press"
             },
             {
-              "nom": "Chest press machine",
+              "nom": "Développé incliné haltères",
               "series": 3,
               "reps": "10",
               "repos_s": 90,
-              "poids_depart": "30 kg",
-              "note": "Angle différent du bench, ne cherche pas la même charge",
-              "demo": "Leverage_Chest_Press"
+              "poids_depart": "14 kg / bras",
+              "note": "Haut des pecs. Cherche l'étirement en bas.",
+              "demo": "Incline_Dumbbell_Press"
             },
             {
               "nom": "Élévations latérales haltères",
               "series": 4,
               "reps": "12",
               "repos_s": 60,
-              "poids_depart": "5 kg / bras",
-              "note": "Ne pas tricher avec l'élan — si tu triches, réduis la charge. Dernière série drop set.",
+              "poids_depart": "6 kg / bras",
+              "note": "Ne pas tricher avec l'élan. Dernière série en drop set.",
               "demo": "Side_Lateral_Raise"
             },
             {
@@ -379,81 +380,24 @@
               "series": 3,
               "reps": "12",
               "repos_s": 60,
-              "poids_depart": "20 kg",
+              "poids_depart": "22,5 kg",
               "note": "Dernière série drop set",
               "demo": "Triceps_Pushdown_-_Rope_Attachment"
             },
             {
-              "nom": "Pec deck inversé (rear delt fly)",
-              "series": 3,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "20 kg",
-              "demo": "Reverse_Flyes"
-            }
-          ]
-        },
-        {
-          "id": "P2-LA",
-          "nom": "Mar — Lower Squat",
-          "exercices": [
-            {
-              "nom": "Squat barre",
-              "series": 4,
-              "reps": "8",
-              "repos_s": 150,
-              "poids_depart": "50 kg",
-              "note": "Lourd mais technique propre. Demander un pareur si proche du max.",
-              "demo": "Barbell_Squat"
-            },
-            {
-              "nom": "Leg press",
-              "series": 3,
-              "reps": "10",
-              "repos_s": 120,
-              "poids_depart": "80 kg",
-              "note": "Charges lourdes, amplitude complète",
-              "demo": "Leg_Press"
-            },
-            {
-              "nom": "Leg extension",
+              "nom": "Extension triceps corde au-dessus de la tête",
               "series": 3,
               "reps": "12",
-              "repos_s": 75,
-              "poids_depart": "25 kg",
-              "note": "Dernière série en drop set (réduire de 30%, enchaîner jusqu'à l'échec)",
-              "demo": "Leg_Extensions"
-            },
-            {
-              "nom": "Seated leg curl",
-              "series": 3,
-              "reps": "10-12",
-              "repos_s": 75,
-              "poids_depart": "25 kg",
-              "note": "Tempo lent, contraction en fin de mouvement. Dernière série drop set.",
-              "demo": "Seated_Leg_Curl"
-            },
-            {
-              "nom": "Standing calf raise",
-              "series": 4,
-              "reps": "15",
               "repos_s": 60,
-              "poids_depart": "50 kg",
-              "demo": "Standing_Calf_Raises"
-            },
-            {
-              "nom": "Ab crunch machine",
-              "series": 3,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "20 kg",
-              "demo": "Ab_Crunch_Machine"
+              "poids_depart": "15 kg",
+              "note": "Étirer la longue portion. Dernière série drop set.",
+              "demo": "Cable_Rope_Overhead_Triceps_Extension"
             }
           ]
         },
         {
-          "id": "P2-UB",
-          "nom": "Jeu — Upper Pull",
+          "id": "PPL-P2-PULL",
+          "nom": "Pull — Dos / Arrière d'épaule / Biceps",
           "exercices": [
             {
               "nom": "Tractions (lestées si +10 reps)",
@@ -469,7 +413,8 @@
               "series": 4,
               "reps": "10",
               "repos_s": 90,
-              "poids_depart": "35 kg",
+              "poids_depart": "40 kg",
+              "note": "Tirer vers le bas du sternum, contracter les omoplates",
               "demo": "T-Bar_Row_with_Handle"
             },
             {
@@ -477,7 +422,7 @@
               "series": 3,
               "reps": "10",
               "repos_s": 90,
-              "poids_depart": "40 kg",
+              "poids_depart": "45 kg",
               "note": "Prise large pronation, tirer vers le haut du sternum",
               "demo": "Wide-Grip_Lat_Pulldown"
             },
@@ -486,7 +431,7 @@
               "series": 3,
               "reps": "15",
               "repos_s": 60,
-              "poids_depart": "20 kg",
+              "poids_depart": "22,5 kg",
               "demo": "Reverse_Flyes"
             },
             {
@@ -494,7 +439,7 @@
               "series": 3,
               "reps": "10-12",
               "repos_s": 60,
-              "poids_depart": "8 kg / bras",
+              "poids_depart": "9 kg / bras",
               "note": "Dernière série drop set",
               "demo": "Dumbbell_Bicep_Curl"
             },
@@ -503,23 +448,142 @@
               "series": 3,
               "reps": "10-12",
               "repos_s": 60,
-              "poids_depart": "8 kg / bras",
+              "poids_depart": "9 kg / bras",
               "note": "Brachial + avant-bras. Dernière série drop set.",
               "demo": "Hammer_Curls"
             }
           ]
         },
         {
-          "id": "P2-LB",
-          "nom": "Ven — Lower Hinge",
+          "id": "PPL-P2-LEGS",
+          "nom": "Legs — Quadriceps / Ischios / Mollets",
           "exercices": [
             {
-              "nom": "Soulevé de terre roumain (RDL) haltères ou barre",
+              "nom": "Squat barre",
               "series": 4,
               "reps": "8",
               "repos_s": 150,
-              "poids_depart": "16 kg / main (haltères) ou 50 kg (barre)",
-              "note": "Genoux fixes, hanches en arrière, dos plat, descendre jusqu'à mi-tibia. Si la lombaire arrondit, stop et baisse la charge.",
+              "poids_depart": "55 kg",
+              "note": "Lourd mais technique propre. Demander un pareur si proche du max.",
+              "demo": "Barbell_Squat"
+            },
+            {
+              "nom": "Leg press",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 120,
+              "poids_depart": "90 kg",
+              "note": "Charges lourdes, amplitude complète",
+              "demo": "Leg_Press"
+            },
+            {
+              "nom": "Soulevé de terre roumain (RDL) barre",
+              "series": 4,
+              "reps": "8",
+              "repos_s": 150,
+              "poids_depart": "55 kg",
+              "note": "Genoux fixes, hanches en arrière, dos plat. Si la lombaire arrondit, stop et baisse la charge.",
+              "demo": "Romanian_Deadlift_with_Dumbbells"
+            },
+            {
+              "nom": "Leg extension",
+              "series": 3,
+              "reps": "12",
+              "repos_s": 75,
+              "poids_depart": "27,5 kg",
+              "note": "Dernière série en drop set (réduire de 30%, enchaîner jusqu'à l'échec)",
+              "demo": "Leg_Extensions"
+            },
+            {
+              "nom": "Seated leg curl",
+              "series": 3,
+              "reps": "10-12",
+              "repos_s": 75,
+              "poids_depart": "27,5 kg",
+              "note": "Tempo lent, contraction en fin de mouvement. Dernière série drop set.",
+              "demo": "Seated_Leg_Curl"
+            },
+            {
+              "nom": "Standing calf raise",
+              "series": 4,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "55 kg",
+              "demo": "Standing_Calf_Raises"
+            }
+          ]
+        },
+        {
+          "id": "PPL-P2-UPPER",
+          "nom": "Upper — Haut du corps (2e dose)",
+          "exercices": [
+            {
+              "nom": "Chest press machine",
+              "series": 4,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "35 kg",
+              "note": "2e stimulus pecs. Ne cherche pas la charge de la barre, cherche le volume propre.",
+              "demo": "Leverage_Chest_Press"
+            },
+            {
+              "nom": "Lat pulldown (poulie haute)",
+              "series": 4,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "45 kg",
+              "note": "Prise large, tirer vers le haut du sternum",
+              "demo": "Wide-Grip_Lat_Pulldown"
+            },
+            {
+              "nom": "Développé épaules haltères assis",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "14 kg / bras",
+              "note": "Descendre au niveau des oreilles, amplitude complète",
+              "demo": "Dumbbell_Shoulder_Press"
+            },
+            {
+              "nom": "Tirage horizontal câble (seated row)",
+              "series": 3,
+              "reps": "10",
+              "repos_s": 90,
+              "poids_depart": "40 kg",
+              "note": "Tirer vers le nombril, serrer les omoplates, ne pas balancer",
+              "demo": "Seated_Cable_Rows"
+            },
+            {
+              "nom": "Élévations latérales haltères",
+              "series": 4,
+              "reps": "15",
+              "repos_s": 60,
+              "poids_depart": "6 kg / bras",
+              "note": "Volume épaules. Dernière série drop set.",
+              "demo": "Side_Lateral_Raise"
+            },
+            {
+              "nom": "Superset curl + tricep pulldown",
+              "series": 3,
+              "reps": "12 chacun",
+              "repos_s": 60,
+              "poids_depart": "9 kg / bras + 20 kg au câble",
+              "note": "Enchaîner biceps puis triceps sans repos entre les deux",
+              "demo": "Triceps_Pushdown_-_Rope_Attachment"
+            }
+          ]
+        },
+        {
+          "id": "PPL-P2-LOWER",
+          "nom": "Lower — Bas du corps (focus chaîne postérieure)",
+          "exercices": [
+            {
+              "nom": "Soulevé de terre roumain (RDL) barre",
+              "series": 4,
+              "reps": "8",
+              "repos_s": 150,
+              "poids_depart": "60 kg",
+              "note": "2e dose ischios/fessiers. Genoux fixes, dos plat, descendre jusqu'à mi-tibia.",
               "demo": "Romanian_Deadlift_with_Dumbbells"
             },
             {
@@ -527,34 +591,34 @@
               "series": 3,
               "reps": "12",
               "repos_s": 90,
-              "poids_depart": "70 kg",
-              "note": "Pieds hauts pour focus chaîne postérieure (vs séance Squat)",
+              "poids_depart": "80 kg",
+              "note": "Pieds hauts pour focus chaîne postérieure (vs séance Legs)",
               "demo": "Leg_Press"
-            },
-            {
-              "nom": "Seated leg curl",
-              "series": 4,
-              "reps": "10-12",
-              "repos_s": 75,
-              "poids_depart": "25 kg",
-              "note": "Dernière série drop set",
-              "demo": "Seated_Leg_Curl"
             },
             {
               "nom": "Hip thrust barre (ou machine)",
               "series": 3,
               "reps": "12",
               "repos_s": 90,
-              "poids_depart": "40 kg",
+              "poids_depart": "45 kg",
               "note": "Dos sur banc, monter en serrant les fessiers, pause 1s en haut",
               "demo": "Barbell_Hip_Thrust"
+            },
+            {
+              "nom": "Seated leg curl",
+              "series": 4,
+              "reps": "10-12",
+              "repos_s": 75,
+              "poids_depart": "27,5 kg",
+              "note": "Dernière série drop set",
+              "demo": "Seated_Leg_Curl"
             },
             {
               "nom": "Standing calf raise",
               "series": 4,
               "reps": "15",
               "repos_s": 60,
-              "poids_depart": "50 kg",
+              "poids_depart": "55 kg",
               "demo": "Standing_Calf_Raises"
             },
             {
@@ -565,64 +629,6 @@
               "poids_depart": "Poids du corps",
               "note": "+15s vs phase 1. Si trop facile : passer à 60s ou ajouter une assiette sur le dos.",
               "demo": "Plank"
-            }
-          ]
-        },
-        {
-          "id": "P2-X",
-          "nom": "Sam — Accessoires (optionnel)",
-          "exercices": [
-            {
-              "nom": "Élévations latérales haltères",
-              "series": 4,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "6 kg / bras",
-              "note": "Volume supplémentaire pour épaules. Dernière série drop set.",
-              "demo": "Side_Lateral_Raise"
-            },
-            {
-              "nom": "Pec deck inversé (rear delt fly)",
-              "series": 4,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "22,5 kg",
-              "note": "Rappel rear delt. Dernière série drop set.",
-              "demo": "Reverse_Flyes"
-            },
-            {
-              "nom": "Curl + tricep pulldown (superset)",
-              "series": 3,
-              "reps": "12 chacun",
-              "repos_s": 60,
-              "poids_depart": "8 kg / bras + 20 kg au câble",
-              "note": "Enchaîner biceps puis triceps sans repos entre les deux",
-              "demo": "Triceps_Pushdown_-_Rope_Attachment"
-            },
-            {
-              "nom": "Curl marteau haltères",
-              "series": 3,
-              "reps": "12",
-              "repos_s": 60,
-              "poids_depart": "8 kg / bras",
-              "demo": "Hammer_Curls"
-            },
-            {
-              "nom": "Standing calf raise",
-              "series": 4,
-              "reps": "20",
-              "repos_s": 60,
-              "poids_depart": "40 kg",
-              "note": "Reps plus hautes pour fibres lentes",
-              "demo": "Standing_Calf_Raises"
-            },
-            {
-              "nom": "Ab crunch machine",
-              "series": 4,
-              "reps": "15",
-              "repos_s": 60,
-              "poids_depart": "22,5 kg",
-              "demo": "Ab_Crunch_Machine"
             }
           ]
         }

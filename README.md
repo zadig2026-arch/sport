@@ -1,9 +1,11 @@
-# Sport — Programme Machines Confort
+# Sport — Push / Pull / Legs + Upper / Lower
 
 App web locale (PWA) pour suivre ton programme depuis ton iPhone à la salle.
 
-- **Programme** : 12 semaines, full body 3x/semaine, 2 phases (adaptation → progression). Dominante machines + compound maîtrisés (squat, bench, overhead press, tractions).
-- **Tracker** : coche chaque série, note tes charges, vois la charge de la séance précédente pour viser la progression
+- **Programme** : 12 semaines, 5 séances/semaine en Push / Pull / Legs / Upper / Lower, 2 phases (adaptation → progression). Chaque muscle est touché ~2x/semaine. Dominante machines + compound maîtrisés (squat, bench, overhead press, RDL, tractions).
+- **Tracker** : coche chaque série, note charges et reps, vois la charge de la dernière fois pour viser la progression
+- **Historique des séances** : chaque séance terminée est sauvegardée (date, charges, reps), consultable dans l'onglet Suivi
+- **Progression des charges** : graphique d'évolution par exercice, record perso (PR) et suggestion de charge pour la prochaine séance, dans l'onglet Progression
 - **Timer de repos** : lancé auto quand tu valides une série
 - **Suivi de poids** : pesée hebdo, graphique, alertes d'ajustement calorique
 - **Plan nutrition budget** : 2850 kcal/jour pour ~5€/jour, liste de courses intégrée
@@ -65,15 +67,15 @@ URL publique → installable partout.
 
 ```
 Sport/
-├── index.html            # 3 onglets : Séance / Suivi / Nutrition
+├── index.html            # 4 onglets : Séance / Progression / Suivi / Nutrition
 ├── style.css             # Dark mode mobile-first
-├── app.js                # Logique + localStorage + timer + graphique
+├── app.js                # Logique + localStorage + historique + timer + graphiques
 ├── manifest.webmanifest  # Config PWA
 ├── sw.js                 # Service worker offline
 ├── icon-192.png          # Icône écran d'accueil
 ├── icon-512.png          # Icône HD
 └── data/
-    ├── programme.json    # 2 phases × 3 séances × exercices détaillés
+    ├── programme.json    # 2 phases × 5 séances (PPL + Upper/Lower) × exercices détaillés
     └── nutrition.json    # Repas, liste de courses, macros
 ```
 

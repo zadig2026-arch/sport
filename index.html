@@ -24,6 +24,7 @@
 
 <nav class="tabs" role="tablist">
   <button class="tab active" data-tab="seance" role="tab">Séance</button>
+  <button class="tab" data-tab="progression" role="tab">Progression</button>
   <button class="tab" data-tab="suivi" role="tab">Suivi</button>
   <button class="tab" data-tab="nutrition" role="tab">Nutrition</button>
 </nav>
@@ -40,6 +41,21 @@
     <div id="exercises" class="exercises"></div>
     <div class="done-zone">
       <button id="btn-finish-session" class="primary big">Terminer la séance</button>
+    </div>
+  </section>
+
+  <!-- PROGRESSION -->
+  <section id="tab-progression" class="tab-panel">
+    <div class="card">
+      <h2>Progression des charges</h2>
+      <p class="muted">Évolution de ta série la plus lourde, séance après séance.</p>
+      <div class="session-picker">
+        <label for="prog-exercise">Exercice</label>
+        <select id="prog-exercise"></select>
+      </div>
+      <div id="prog-summary" class="prog-summary"></div>
+      <canvas id="prog-chart" width="600" height="300"></canvas>
+      <div id="prog-empty" class="muted"></div>
     </div>
   </section>
 
@@ -62,8 +78,8 @@
     </div>
 
     <div class="card">
-      <h2>Charges récentes</h2>
-      <div id="recent-loads" class="recent-loads"></div>
+      <h2>Historique des séances</h2>
+      <div id="history-list" class="history-list"></div>
     </div>
 
     <div class="card danger-card">
