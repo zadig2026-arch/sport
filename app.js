@@ -59,6 +59,7 @@ async function init() {
   renderNutrition();
   renderSuivi();
   registerSW();
+  setupWakeLock();
 }
 
 // ===== Tabs =====
@@ -742,6 +743,27 @@ function renderNutrition() {
 
   const bullets = document.getElementById('nutrition-principes');
   bullets.innerHTML = nutrition.principes.map(p => `<li>${p}</li>`).join('');
+}
+
+// ===== Wake Lock (garder l'écran allumé pendant la séance) =====
+let wakeLock = null;
+
+async function requestWakeLock() {
+  if (!('wakeLock' in navigator)) return; // iOS < 16.4 ou navigateur non compatible
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    wakeLock.addEventListener('release', () => { wakeLock = null; });
+  } catch {
+    // Verrou refusé (onglet en arrière-plan, batterie faible…), on réessaiera au retour
+  }
+}
+
+function setupWakeLock() {
+  requestWakeLock();
+  // iOS relâche le verrou dès que l'app passe en arrière-plan : on le ré-acquiert au retour
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') requestWakeLock();
+  });
 }
 
 // ===== Service Worker =====
