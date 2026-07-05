@@ -2,7 +2,7 @@
 
 App web locale (PWA) pour suivre ton programme depuis ton iPhone à la salle.
 
-- **Programme** : 12 semaines, 5 séances/semaine en Push / Pull / Legs / Upper / Lower, 2 phases (adaptation → progression). Chaque muscle est touché ~2x/semaine. Dominante machines + compound maîtrisés (squat, bench, overhead press, RDL, tractions).
+- **Programme** : 12 semaines, 5 séances Push / Pull / Legs / Upper / Lower en rotation continue à 3 séances/semaine, 2 phases (adaptation → progression). Chaque muscle est touché environ tous les 6 jours. Dominante machines + compound maîtrisés (squat, bench, overhead press, RDL, tractions). L'app propose automatiquement la prochaine séance de la rotation.
 - **Tracker** : coche chaque série, note charges et reps, vois la charge de la dernière fois pour viser la progression
 - **Historique des séances** : chaque séance terminée est sauvegardée (date, charges, reps), consultable dans l'onglet Suivi
 - **Progression des charges** : graphique d'évolution par exercice, record perso (PR) et suggestion de charge pour la prochaine séance, dans l'onglet Progression

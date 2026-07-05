@@ -1,19 +1,19 @@
 {
   "meta": {
-    "titre": "Push / Pull / Legs + Upper / Lower — 12 semaines",
+    "titre": "Push / Pull / Legs + Upper / Lower — rotation 3x/semaine",
     "duree_semaines": 12,
-    "frequence": "5 séances/semaine (Push, Pull, Legs, Upper, Lower) + 2 jours de repos",
-    "profil_cible": "Ectomorphe ~70 kg en prise de masse, objectif 75 kg. Machines + compound basiques. Structure PPLUL : chaque muscle touché ~2x/semaine (idéal pour grossir), avec 2 jours de repos pour la récup et l'appétit. Changer de programme après 12 semaines."
+    "frequence": "3 séances/semaine en rotation continue (Push → Pull → Legs → Upper → Lower)",
+    "profil_cible": "Ectomorphe ~70 kg en prise de masse, objectif 75 kg. Machines + compound basiques. Les 5 séances s'enchaînent en boucle à 3 séances/semaine : chaque séance revient tous les ~11 jours, chaque muscle est touché environ tous les 6 jours (dose PPL + dose Upper/Lower par cycle). Changer de programme après 12 semaines."
   },
   "principes": [
-    "Ordre conseillé : Lun Push, Mar Pull, Mer Legs, Jeu repos, Ven Upper, Sam Lower, Dim repos. Décale si besoin, garde 2 jours de repos.",
+    "Rotation : Push → Pull → Legs → Upper → Lower puis on recommence. 3 séances/semaine (ex. Lun/Mer/Ven), l'app propose la séance suivante automatiquement. La semaine suivante reprend là où la rotation s'est arrêtée.",
     "Échauffement obligatoire : 5 min vélo + 2 séries légères sur le 1er compound de la séance",
     "Tempo 2-0-1 : 2s descente, 0s pause, 1s montée contrôlée",
     "Repos 2-2,5 min sur compound lourd, 90s sur semi-isolation, 60s sur isolation",
-    "Noter chaque charge → viser +2,5 kg ou +1 rep par semaine quand la technique reste propre",
+    "Noter chaque charge → viser +2,5 kg ou +1 rep d'un passage à l'autre quand la technique reste propre (chaque séance revient tous les ~11 jours)",
     "Les poids de départ sont des repères — ajuste dès la 2e série si trop léger ou trop lourd",
-    "Si 3 semaines sans progression sur un exo : changer de variante ou deload (-10%)",
-    "Upper et Lower sont la 2e dose hebdo des mêmes muscles : pas besoin d'y battre tes records de Push/Pull/Legs, cherche la qualité d'exécution et le volume",
+    "Si 3 passages sans progression sur un exo : changer de variante ou deload (-10%)",
+    "Upper et Lower sont la 2e dose du cycle pour les mêmes muscles : pas besoin d'y battre tes records de Push/Pull/Legs, cherche la qualité d'exécution et le volume",
     "Pas de cardio intense : max 1 marche/semaine. Préserver le surplus calorique"
   ],
   "phases": [

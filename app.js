@@ -93,11 +93,18 @@ function populateSessionSelect() {
     opt.textContent = s.nom;
     sel.appendChild(opt);
   });
-  currentSessionId = state.lastSession && phase.seances.find(s => s.id === state.lastSession)
-    ? state.lastSession
-    : phase.seances[0].id;
+  currentSessionId = nextRotationSessionId(phase);
   sel.value = currentSessionId;
   sel.onchange = () => { currentSessionId = sel.value; renderSession(); };
+}
+
+// Rotation Push → Pull → Legs → Upper → Lower : propose la séance qui suit
+// la dernière terminée, en rebouclant en fin de cycle.
+function nextRotationSessionId(phase) {
+  const rotation = phase.seances.filter(s => !s.optionnel);
+  const i = rotation.findIndex(s => s.id === state.lastSession);
+  if (i >= 0) return rotation[(i + 1) % rotation.length].id;
+  return rotation[0]?.id || phase.seances[0].id;
 }
 
 function getCurrentSession() {
@@ -373,11 +380,15 @@ function finishSession() {
   // et "Dernière fois" s'alimente désormais depuis l'historique.
   delete state.loads[session.id];
   delete state.checks[session.id];
-  state.lastSession = session.id;
+  if (!session.optionnel) state.lastSession = session.id;
   saveState();
 
+  const phase = programme.phases.find(p => p.id === state.phaseId);
+  const next = phase.seances.find(s => s.id === nextRotationSessionId(phase));
+  alert(`Séance enregistrée dans l'historique ! Pense à manger ton post-training.\nProchaine séance : ${next ? next.nom : '—'}`);
+  populateSessionSelect();
   renderSession();
-  alert('Séance enregistrée dans l\'historique ! Pense à manger ton post-training.');
+  window.scrollTo(0, 0);
 }
 
 // ===== Rest timer =====
