@@ -25,6 +25,8 @@ html, body {
   font-size: 17px;
   line-height: 1.45;
   overscroll-behavior-y: none;
+  /* Bloque le double-tap zoom (le pinch est bloqué par le meta viewport) */
+  touch-action: manipulation;
 }
 
 body {
