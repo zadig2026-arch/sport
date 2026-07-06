@@ -690,6 +690,13 @@ function setupSettings() {
   document.getElementById('btn-settings').onclick = () => {
     document.getElementById('input-week').value = state.week;
     document.getElementById('input-phase').value = state.phaseId;
+    // Version réellement installée (nom du cache du service worker actif)
+    if (window.caches) {
+      caches.keys().then(ks => {
+        document.getElementById('app-version').textContent =
+          ks.length ? `Version installée : ${ks.join(', ')}` : 'Version installée : aucune (pas de cache)';
+      }).catch(() => {});
+    }
     modal.classList.remove('hidden');
   };
   document.getElementById('settings-close').onclick = () => modal.classList.add('hidden');
