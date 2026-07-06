@@ -779,9 +779,24 @@ function setupWakeLock() {
 
 // ===== Service Worker =====
 function registerSW() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  }
+  if (!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.register('./sw.js').then(reg => {
+    // iOS ne vérifie pas toujours les mises à jour d'une PWA installée :
+    // on force la vérification à chaque retour au premier plan.
+    reg.update().catch(() => {});
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') reg.update().catch(() => {});
+    });
+  }).catch(() => {});
+  // Quand un nouveau SW prend le contrôle (skipWaiting + claim), on recharge
+  // pour servir immédiatement les fichiers frais. Les saisies sont dans
+  // localStorage, rien n'est perdu.
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (reloaded) return;
+    reloaded = true;
+    location.reload();
+  });
 }
 
 // Go
