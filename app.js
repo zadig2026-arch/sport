@@ -353,31 +353,37 @@ function finishSession() {
     return { nom: ex.nom, sets };
   }).filter(e => e.sets.length);
 
-  if (!exercises.length) {
-    alert('Aucune charge saisie. Renseigne au moins une série avant de terminer.');
-    return;
-  }
+  // Enregistrement dans l'historique et rotation uniquement s'il y a des
+  // charges saisies. Mais dans TOUS les cas on vide le tampon (coches + poids)
+  // pour repartir propre, y compris quand on a juste coché les séries.
+  const hasData = exercises.length > 0;
 
-  const today = new Date().toISOString().slice(0, 10);
-  state.history.unshift({
-    date: today,
-    sessionId: session.id,
-    sessionName: session.nom,
-    phaseId: state.phaseId,
-    week: state.week,
-    exercises
-  });
+  if (hasData) {
+    const today = new Date().toISOString().slice(0, 10);
+    state.history.unshift({
+      date: today,
+      sessionId: session.id,
+      sessionName: session.nom,
+      phaseId: state.phaseId,
+      week: state.week,
+      exercises
+    });
+    if (!session.optionnel) state.lastSession = session.id;
+  }
 
   // Vider le tampon de la séance : la prochaine fois démarre propre,
   // et "Dernière fois" s'alimente désormais depuis l'historique.
   delete state.loads[session.id];
   delete state.checks[session.id];
-  if (!session.optionnel) state.lastSession = session.id;
   saveState();
 
-  const phase = programme.phases.find(p => p.id === state.phaseId);
-  const next = phase.seances.find(s => s.id === nextRotationSessionId(phase));
-  alert(`Séance enregistrée dans l'historique ! Pense à manger ton post-training.\nProchaine séance : ${next ? next.nom : '—'}`);
+  if (hasData) {
+    const phase = programme.phases.find(p => p.id === state.phaseId);
+    const next = phase.seances.find(s => s.id === nextRotationSessionId(phase));
+    alert(`Séance enregistrée dans l'historique ! Pense à manger ton post-training.\nProchaine séance : ${next ? next.nom : '—'}`);
+  } else {
+    alert('Séance réinitialisée (aucune charge saisie).');
+  }
   populateSessionSelect();
   renderSession();
   window.scrollTo(0, 0);
