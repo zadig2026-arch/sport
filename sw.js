@@ -1,4 +1,4 @@
-const CACHE = 'sport-v10';
+const CACHE = 'sport-v11';
 const ASSETS = [
   './',
   './index.html',
@@ -6,7 +6,6 @@ const ASSETS = [
   './app.js',
   './manifest.webmanifest',
   './data/programme.json',
-  './data/nutrition.json',
   './icon-192.png',
   './icon-512.png'
 ];

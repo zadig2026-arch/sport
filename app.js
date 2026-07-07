@@ -2,7 +2,6 @@
 const LS_KEY = 'sport-v1';
 const state = loadState();
 let programme = null;
-let nutrition = null;
 let currentSessionId = null;
 
 function loadState() {
@@ -38,12 +37,8 @@ function saveState() {
 // ===== Init =====
 async function init() {
   try {
-    const [pRes, nRes] = await Promise.all([
-      fetch('./data/programme.json'),
-      fetch('./data/nutrition.json')
-    ]);
+    const pRes = await fetch('./data/programme.json');
     programme = await pRes.json();
-    nutrition = await nRes.json();
   } catch (e) {
     document.body.innerHTML = '<p style="padding:20px;color:#f66">Impossible de charger les données. Sers le dossier avec un serveur HTTP (pas en file://).</p>';
     return;
@@ -54,9 +49,7 @@ async function init() {
   setupSettings();
   setupReset();
   populateSessionSelect();
-  setupProgression();
   renderSession();
-  renderNutrition();
   renderSuivi();
   registerSW();
   setupWakeLock();
@@ -71,7 +64,6 @@ function setupTabs() {
       btn.classList.add('active');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
       if (btn.dataset.tab === 'suivi') renderSuivi();
-      if (btn.dataset.tab === 'progression') renderProgression();
     });
   });
 }
@@ -613,77 +605,6 @@ function renderHistorique() {
   });
 }
 
-// ===== Progression des charges =====
-function allExerciseNames() {
-  const set = new Set();
-  programme.phases.forEach(ph => ph.seances.forEach(s => s.exercices.forEach(e => set.add(e.nom))));
-  return [...set];
-}
-
-function setupProgression() {
-  const sel = document.getElementById('prog-exercise');
-  if (!sel) return;
-  sel.innerHTML = '';
-  allExerciseNames().forEach(n => {
-    const o = document.createElement('option');
-    o.value = n;
-    o.textContent = n;
-    sel.appendChild(o);
-  });
-  sel.onchange = renderProgression;
-}
-
-// Points chronologiques (ancien → récent) de la série la plus lourde pour un exo.
-function exerciseProgression(name) {
-  const pts = [];
-  [...state.history].reverse().forEach(h => {
-    const e = h.exercises.find(x => x.nom === name);
-    if (!e) return;
-    let top = -Infinity, topReps = '';
-    e.sets.forEach(s => {
-      const kg = parseFloat(s.kg);
-      if (!isNaN(kg) && kg > top) { top = kg; topReps = s.reps || ''; }
-    });
-    if (isFinite(top)) pts.push({ date: h.date, top, reps: topReps });
-  });
-  return pts;
-}
-
-function renderProgression() {
-  const sel = document.getElementById('prog-exercise');
-  if (!sel) return;
-  const name = sel.value;
-  const pts = exerciseProgression(name);
-  const summary = document.getElementById('prog-summary');
-  const empty = document.getElementById('prog-empty');
-  const canvas = document.getElementById('prog-chart');
-
-  if (!pts.length) {
-    summary.innerHTML = '';
-    canvas.style.display = 'none';
-    empty.textContent = 'Aucune donnée pour cet exercice. Termine une séance qui le contient pour démarrer le suivi.';
-    return;
-  }
-
-  empty.textContent = '';
-  canvas.style.display = '';
-
-  const pr = Math.max(...pts.map(p => p.top));
-  const last = pts[pts.length - 1];
-  const suggest = +(last.top + 2.5).toFixed(1);
-  summary.innerHTML = `
-    <div class="prog-stat"><div class="prog-val">${pr} kg</div><div class="prog-lbl">Record (PR)</div></div>
-    <div class="prog-stat"><div class="prog-val">${last.top} kg${last.reps ? ` × ${last.reps}` : ''}</div><div class="prog-lbl">Dernière séance</div></div>
-    <div class="prog-stat"><div class="prog-val">${suggest} kg</div><div class="prog-lbl">Prochaine cible</div></div>`;
-
-  drawChart(
-    canvas,
-    pts.map(p => p.top),
-    pts.map(p => p.date.slice(5)),
-    'Termine une 2e séance pour tracer la courbe'
-  );
-}
-
 // ===== Settings =====
 function setupSettings() {
   const modal = document.getElementById('settings-modal');
@@ -718,49 +639,6 @@ function setupReset() {
     localStorage.removeItem(LS_KEY);
     location.reload();
   };
-}
-
-// ===== Nutrition =====
-function renderNutrition() {
-  const m = nutrition.meta.macros;
-  document.getElementById('macro-kcal').textContent = nutrition.meta.cible_kcal;
-  document.getElementById('macro-p').textContent = m.proteines_g + ' g';
-  document.getElementById('macro-g').textContent = m.glucides_g + ' g';
-  document.getElementById('macro-l').textContent = m.lipides_g + ' g';
-
-  const meals = document.getElementById('meals');
-  meals.innerHTML = '';
-  nutrition.repas.forEach(r => {
-    const el = document.createElement('div');
-    el.className = 'meal';
-    el.innerHTML = `
-      <div class="meal-head">
-        <span class="meal-name">${r.nom}</span>
-        <span class="meal-kcal">${r.kcal} kcal</span>
-      </div>
-      <div class="meal-time">${r.heure}</div>
-      <ul>${r.items.map(i => `<li>${i}</li>`).join('')}</ul>
-    `;
-    meals.appendChild(el);
-  });
-
-  const grocery = document.getElementById('grocery-list');
-  grocery.innerHTML = '';
-  let total = 0;
-  nutrition.liste_courses_semaine.forEach(g => {
-    total += g.prix_eur;
-    const li = document.createElement('li');
-    li.innerHTML = `
-      <span>${g.item}<br><span class="qty">${g.quantite}</span></span>
-      <span class="price">${g.prix_eur.toFixed(2)} €</span>
-    `;
-    grocery.appendChild(li);
-  });
-  document.getElementById('grocery-total').textContent =
-    `Total estimé : ${total.toFixed(2)} € · ${nutrition.cout_hebdo_estime_eur}`;
-
-  const bullets = document.getElementById('nutrition-principes');
-  bullets.innerHTML = nutrition.principes.map(p => `<li>${p}</li>`).join('');
 }
 
 // ===== Wake Lock (garder l'écran allumé pendant la séance) =====

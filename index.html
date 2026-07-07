@@ -24,9 +24,7 @@
 
 <nav class="tabs" role="tablist">
   <button class="tab active" data-tab="seance" role="tab">Séance</button>
-  <button class="tab" data-tab="progression" role="tab">Progression</button>
   <button class="tab" data-tab="suivi" role="tab">Suivi</button>
-  <button class="tab" data-tab="nutrition" role="tab">Nutrition</button>
 </nav>
 
 <main>
@@ -41,21 +39,6 @@
     <div id="exercises" class="exercises"></div>
     <div class="done-zone">
       <button id="btn-finish-session" class="primary big">Terminer la séance</button>
-    </div>
-  </section>
-
-  <!-- PROGRESSION -->
-  <section id="tab-progression" class="tab-panel">
-    <div class="card">
-      <h2>Progression des charges</h2>
-      <p class="muted">Évolution de ta série la plus lourde, séance après séance.</p>
-      <div class="session-picker">
-        <label for="prog-exercise">Exercice</label>
-        <select id="prog-exercise"></select>
-      </div>
-      <div id="prog-summary" class="prog-summary"></div>
-      <canvas id="prog-chart" width="600" height="300"></canvas>
-      <div id="prog-empty" class="muted"></div>
     </div>
   </section>
 
@@ -85,35 +68,6 @@
     <div class="card danger-card">
       <h2>Zone dangereuse</h2>
       <button id="btn-reset" class="danger">Effacer toutes les données</button>
-    </div>
-  </section>
-
-  <!-- NUTRITION -->
-  <section id="tab-nutrition" class="tab-panel">
-    <div class="card macro-card">
-      <h2>Cibles du jour</h2>
-      <div class="macros">
-        <div><div class="macro-val" id="macro-kcal">–</div><div class="macro-lbl">kcal</div></div>
-        <div><div class="macro-val" id="macro-p">–</div><div class="macro-lbl">protéines</div></div>
-        <div><div class="macro-val" id="macro-g">–</div><div class="macro-lbl">glucides</div></div>
-        <div><div class="macro-val" id="macro-l">–</div><div class="macro-lbl">lipides</div></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Journée type</h2>
-      <div id="meals"></div>
-    </div>
-
-    <div class="card">
-      <h2>Liste de courses (semaine)</h2>
-      <ul id="grocery-list" class="grocery"></ul>
-      <p class="muted" id="grocery-total"></p>
-    </div>
-
-    <div class="card">
-      <h2>Principes</h2>
-      <ul id="nutrition-principes" class="bullets"></ul>
     </div>
   </section>
 
