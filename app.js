@@ -390,35 +390,67 @@ function finishSession() {
 }
 
 // ===== Rest timer =====
+// Le décompte est calé sur une heure de fin absolue (restEndAt) plutôt que sur
+// un compteur décrémenté chaque seconde. Sinon, quand l'iPhone se verrouille,
+// iOS suspend le JS et le timer gèle. En repartant de Date.now() à chaque tick
+// et au retour au premier plan, le temps continue de s'écouler écran éteint.
 let restInterval = null;
+let restEndAt = null;
+
 function startRest(seconds) {
-  const el = document.getElementById('rest-timer');
-  const disp = document.getElementById('rest-display');
-  let remaining = seconds;
-  el.classList.remove('hidden');
-  updateDisp();
+  restEndAt = Date.now() + seconds * 1000;
+  document.getElementById('rest-timer').classList.remove('hidden');
+  updateRestDisplay();
   if (restInterval) clearInterval(restInterval);
-  restInterval = setInterval(() => {
-    remaining--;
-    if (remaining <= 0) {
-      clearInterval(restInterval);
-      restInterval = null;
-      beep();
-      vibrate([200, 100, 200]);
-      el.classList.add('hidden');
-      return;
-    }
-    updateDisp();
-  }, 1000);
-  function updateDisp() {
-    const m = Math.floor(remaining / 60);
-    const s = remaining % 60;
-    disp.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-  }
+  restInterval = setInterval(tickRest, 250);
 }
+
+function tickRest() {
+  if (restEndAt === null) return;
+  if (Date.now() >= restEndAt) {
+    finishRest();
+    return;
+  }
+  updateRestDisplay();
+}
+
+function updateRestDisplay() {
+  if (restEndAt === null) return;
+  const remaining = Math.max(0, Math.ceil((restEndAt - Date.now()) / 1000));
+  const m = Math.floor(remaining / 60);
+  const s = remaining % 60;
+  document.getElementById('rest-display').textContent =
+    `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function finishRest() {
+  if (restInterval) clearInterval(restInterval);
+  restInterval = null;
+  restEndAt = null;
+  beep();
+  vibrate([200, 100, 200]);
+  document.getElementById('rest-timer').classList.add('hidden');
+}
+
+// Au retour au premier plan (déverrouillage), on resynchronise : soit le repos
+// est fini pendant l'écran éteint et on le clôt tout de suite, soit on rafraîchit
+// l'affichage avec le vrai temps restant.
+function resyncRest() {
+  if (restEndAt === null) return;
+  if (Date.now() >= restEndAt) {
+    finishRest();
+    return;
+  }
+  // L'intervalle a pu être supprimé (et pas seulement suspendu) pendant la
+  // veille : on le relance si besoin, puis on rafraîchit l'affichage.
+  if (!restInterval) restInterval = setInterval(tickRest, 250);
+  updateRestDisplay();
+}
+
 document.getElementById('rest-cancel').onclick = () => {
   if (restInterval) clearInterval(restInterval);
   restInterval = null;
+  restEndAt = null;
   document.getElementById('rest-timer').classList.add('hidden');
 };
 
@@ -664,7 +696,10 @@ function setupWakeLock() {
   requestWakeLock();
   // iOS relâche le verrou dès que l'app passe en arrière-plan : on le ré-acquiert au retour
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') requestWakeLock();
+    if (document.visibilityState === 'visible') {
+      requestWakeLock();
+      resyncRest();
+    }
   });
 }
 
